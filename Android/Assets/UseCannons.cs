@@ -6,7 +6,7 @@ using UnityEngine;
 public class UseCannons : MonoBehaviour
 {
     [SerializeField] Camera playerCamera;
-    [SerializeField] Canvas useUpgradePanel;
+    [SerializeField] GameObject useUpgradePanel;
     
     // Start is called before the first frame update
     void Start()
@@ -30,11 +30,11 @@ public class UseCannons : MonoBehaviour
                 objectHit.CompareTag("Cannon5") ||
                 objectHit.CompareTag("Cannon6"))
             {
-                useUpgradePanel.enabled = true;
+                useUpgradePanel.SetActive(true);
             }
             else
             {
-                useUpgradePanel.enabled= false;
+                useUpgradePanel.SetActive(false);
             }
 
         }

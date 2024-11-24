@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - BuildZone
+  - Rules
+  - Cannon1
+  - Cannon2
+  - Cannon3
+  - Cannon4
+  - Cannon5
+  - Cannon6
   layers:
   - Default
   - TransparentFX
