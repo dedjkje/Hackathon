@@ -6,7 +6,7 @@ using TMPro;
 
 public class CannonSpawn : MonoBehaviour
 {
-
+    Rules rules;
     private Material material; //Материал пушки
 
     [SerializeField] private Canvas canvasPrefab; // Префаб Canvas с текстом
@@ -33,6 +33,8 @@ public class CannonSpawn : MonoBehaviour
         remainingTime = countdownTime;
         UpdateTimerText();
 
+        rules = GameObject.FindWithTag("Rules").GetComponent<Rules>();
+
     }
 
 
@@ -48,6 +50,10 @@ public class CannonSpawn : MonoBehaviour
             ChangeTrans(1f);
             canvasInstance.enabled = false;
             gameObject.GetComponent<CannonSpawn>().enabled = false;
+
+            gameObject.tag = $"Cannon{rules.numberOfCannon}";
+            rules.numberOfCannon++;
+
             //gameObject.GetComponent<CannonSpawn>().enabled = false;
         }
     }
