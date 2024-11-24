@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UseCannons : MonoBehaviour
@@ -68,8 +69,7 @@ public class UseCannons : MonoBehaviour
         playerCamera.transform.position = cameraPosition; // Делаем позицию камеры игрока равной камере префаба
         playerCamera.transform.rotation = cameraRotation; // Делаем поворот камеры игрока равной камере префаба
 
-        GameObject.FindWithTag(currentTag).transform.Find("Circle").GetComponent<Accemilator>().SetCannon(); // Включаем аксемилятор
-
+        GameObject.FindWithTag(currentTag).transform.Find("cannon").transform.Find("stvol").GetComponent<Accemilator>().SetCannon(); // Включаем аксемилятор
         playerInterface.SetActive(false);
         cannonInterface.SetActive(true);
 
@@ -81,7 +81,7 @@ public class UseCannons : MonoBehaviour
         playerCamera.transform.position = startPositionCamera;
         playerCamera.transform.rotation = startRotationCamera;
 
-        GameObject.FindWithTag(currentTag).transform.Find("Circle").GetComponent<Accemilator>().UnsetCannon(); // Выключаем аксимилятор
+        GameObject.FindWithTag(currentTag).transform.Find("cannon").transform.Find("stvol").GetComponent<Accemilator>().UnsetCannon(); // Выключаем аксимилятор
 
         playerInterface.SetActive(true);
         cannonInterface.SetActive(false);
@@ -92,8 +92,8 @@ public class UseCannons : MonoBehaviour
         if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
         {
             GameObject canon = GameObject.FindWithTag(currentTag);
-            Vector3 shellPos = canon.transform.Find("ShellPos").transform.position;
-            Quaternion shellRot = canon.transform.Find("ShellPos").transform.rotation;
+            Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
+            Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
 
             GameObject shell = Instantiate(shellPrefab, shellPos, shellRot, transform);            
             shell.transform.parent = null;

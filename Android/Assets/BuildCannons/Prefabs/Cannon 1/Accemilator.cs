@@ -23,7 +23,7 @@ public class Accemilator : MonoBehaviour
     float verStvolRotation;
     bool onThisCannon;
 
-    void Start()
+    void Awake()
     {
         Stvol = GetComponent<Transform>();
         Cannon = transform.parent;
@@ -37,7 +37,6 @@ public class Accemilator : MonoBehaviour
 
     void Update()
     {
-
         if (onThisCannon)
         {
             CannonRotate();
@@ -94,6 +93,7 @@ public class Accemilator : MonoBehaviour
     }
     public void SetCannon()
     {
+        Debug.Log("SetCannon()");
         onThisCannon = true;
         x = Input.acceleration.x;
         y = Input.acceleration.y;
