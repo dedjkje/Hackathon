@@ -26,7 +26,7 @@ public class LookOnZone : MonoBehaviour
     {
         //Выпускаем кек луч
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
         //Дебаг
         //Debug.DrawRay(ray.origin, ray.direction * 1f, Color.red);

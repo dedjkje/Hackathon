@@ -14,7 +14,7 @@ public class ClickToBuild : MonoBehaviour
 
         //Выпускаем лучик, чтобы дезактивировать зону для постройки и создать пушку
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
         //Дебаг
         //Debug.DrawRay(ray.origin, ray.direction * 1f, Color.red);
