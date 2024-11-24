@@ -12,6 +12,10 @@ TagManager:
   - Cannon4
   - Cannon5
   - Cannon6
+  - Player1
+  - Player2
+  - PlayerCamera1
+  - PlayerCamera2
   layers:
   - Default
   - TransparentFX
