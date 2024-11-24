@@ -19,7 +19,7 @@ public class CannonSpawn : MonoBehaviour
 
     void Start()
     {
-        material = gameObject.GetComponent<Renderer>().material;
+        //material = gameObject.GetComponent<Renderer>().material;
         ChangeTrans(0.5f);
 
         canvasInstance = Instantiate(canvasPrefab, transform.position + offset, Quaternion.identity);
@@ -61,8 +61,8 @@ public class CannonSpawn : MonoBehaviour
     void ChangeTrans(float val)
     {
         //Устанавливаем прозрачность материала
-        Color oldColor = material.color;
-        material.color = new Color(oldColor.r,oldColor.g,oldColor.b,val);
+        //Color oldColor = material.color;
+        //material.color = new Color(oldColor.r,oldColor.g,oldColor.b,val);
     }
 
     private void UpdateTimerText()
