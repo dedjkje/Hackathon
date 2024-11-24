@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonGyroscope : MonoBehaviour
+public class Accemilator : MonoBehaviour
 {
     public Transform Cannon;
     public Transform Stvol;
     public float speedHor;
     public float speedVer;
     private bool gyroIsEnabled;
-    private Gyroscope gyroscope;
     float x;
     float y;
     public float maxRotateHorRight;
@@ -30,17 +29,15 @@ public class CannonGyroscope : MonoBehaviour
         Cannon = transform.parent;
         stopRotateHorLeft = false;
         stopRotateHorRight = false;
-        gyroscope = Input.gyro;
-        gyroscope.enabled = false;
-        x = gyroscope.attitude.x;
-        y = gyroscope.attitude.y;
+        x = Input.acceleration.x;
+        y = Input.acceleration.y;
         horCannonRotation = 0;
         verStvolRotation = 0;
     }
 
     void Update()
     {
-        gyroscope.enabled = true;
+
         if (onThisCannon)
         {
             CannonRotate();
@@ -48,10 +45,10 @@ public class CannonGyroscope : MonoBehaviour
     }
     void CannonRotate()
     {
-        float detx = x - gyroscope.attitude.x;
-        float dety = y - gyroscope.attitude.y;
+        float detx = x - Input.acceleration.x;
+        float dety = y - Input.acceleration.y;
         // блокировка по горизонтали 
-        if (horCannonRotation > maxRotateHorRight)
+        if (horCannonRotation > -maxRotateHorLeft)
         {
             stopRotateHorRight = true;
         }
@@ -60,7 +57,7 @@ public class CannonGyroscope : MonoBehaviour
             detx = 0;
             stopRotateHorRight = false;
         }
-        if (horCannonRotation < maxRotateHorLeft)
+        if (horCannonRotation < -maxRotateHorRight)
         {
             stopRotateHorLeft = true;
         }
@@ -70,7 +67,7 @@ public class CannonGyroscope : MonoBehaviour
             stopRotateHorLeft = false;
         }
         // блокировка по вертикали 
-        if (verStvolRotation < maxRotateVerUp)
+        if (verStvolRotation < -maxRotateVerDown)
         {
             stopRotateVerUp = true;
         }
@@ -79,7 +76,7 @@ public class CannonGyroscope : MonoBehaviour
             dety = 0;
             stopRotateVerUp = false;
         }
-        if (verStvolRotation > maxRotateVerDown)
+        if (verStvolRotation > -maxRotateVerUp)
         {
             stopRotateVerDown = true;
         }
@@ -89,16 +86,17 @@ public class CannonGyroscope : MonoBehaviour
             stopRotateVerDown = false;
         }
 
-        Stvol.Rotate(dety * speedVer, 0, 0);
+        Stvol.Rotate(-1 * dety * speedVer, 0, 0);
         verStvolRotation += dety * speedVer;
-        Cannon.Rotate(0, detx * speedHor, 0);
+        Cannon.Rotate(0, -1 * detx * speedHor, 0);
         horCannonRotation += detx * speedHor;
+        Debug.Log(Input.acceleration);
     }
     public void SetCannon()
     {
         onThisCannon = true;
-        x = gyroscope.attitude.x;
-        y = gyroscope.attitude.y;
+        x = Input.acceleration.x;
+        y = Input.acceleration.y;
     }
     public void UnsetCannon()
     {

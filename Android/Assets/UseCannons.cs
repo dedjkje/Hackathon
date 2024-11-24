@@ -9,6 +9,7 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject useUpgradePanel;
     [SerializeField] GameObject cannonInterface;
     [SerializeField] GameObject playerInterface;
+    [SerializeField] GameObject shellPrefab;
     public string currentTag;
 
     public Vector3 startPositionCamera;
@@ -56,6 +57,7 @@ public class UseCannons : MonoBehaviour
 
     public void useCannon()
     { 
+
         startPositionCamera = playerCamera.transform.position; // Запоминаем позицию камеры игрока
         startRotationCamera = playerCamera.transform.rotation; // Запоминаем поворот камеры игрока
 
@@ -65,6 +67,8 @@ public class UseCannons : MonoBehaviour
         Quaternion cameraRotation = canonCamera.transform.rotation;
         playerCamera.transform.position = cameraPosition; // Делаем позицию камеры игрока равной камере префаба
         playerCamera.transform.rotation = cameraRotation; // Делаем поворот камеры игрока равной камере префаба
+
+        GameObject.FindWithTag(currentTag).transform.Find("Circle").GetComponent<Accemilator>().SetCannon(); // Включаем аксемилятор
 
         playerInterface.SetActive(false);
         cannonInterface.SetActive(true);
@@ -77,7 +81,26 @@ public class UseCannons : MonoBehaviour
         playerCamera.transform.position = startPositionCamera;
         playerCamera.transform.rotation = startRotationCamera;
 
+        GameObject.FindWithTag(currentTag).transform.Find("Circle").GetComponent<Accemilator>().UnsetCannon(); // Выключаем аксимилятор
+
         playerInterface.SetActive(true);
         cannonInterface.SetActive(false);
+    }
+
+    public void Shoot()
+    {
+        if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
+        {
+            GameObject canon = GameObject.FindWithTag(currentTag);
+            Vector3 shellPos = canon.transform.Find("ShellPos").transform.position;
+            Quaternion shellRot = canon.transform.Find("ShellPos").transform.rotation;
+
+            GameObject shell = Instantiate(shellPrefab, shellPos, shellRot, transform);            
+            shell.transform.parent = null;
+
+            float force = canon.GetComponent<Cannon1Stats>().force;
+
+            shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
+        }
     }
 }
