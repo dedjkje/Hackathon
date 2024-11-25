@@ -9,15 +9,19 @@ public class Canon1Trajectory : MonoBehaviour
     public UseCannons useCannons;
     public Cannon1Stats cannon1Stats;
     public bool draw = false;
+
+    Alteruna.Avatar avatar;
     // Start is called before the first frame update
     void Start()
     {
-
+        avatar = GetComponent<Alteruna.Avatar>();
+        if (!avatar.IsMe) return;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!avatar.IsMe) return;
         if (draw)
         {
             trajectoryRenderer.ShowTrajetory(origin.position, origin.forward * cannon1Stats.force / 1); // p = mv

@@ -10,14 +10,20 @@ public class PlayerController : MonoBehaviour
 
     public Joystick joystick;
     //[SerializeField] private Animator animator;
-    
+    private Alteruna.Avatar avatar;
     private void Start()
     {
+
+        
+        avatar = GetComponent<Alteruna.Avatar>();
+        if (!avatar.IsMe) return;
+
         controller = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
+        if (!avatar.IsMe) return;
         // Получаем ввод от игрока
         float horizontalInput = joystick.Horizontal;
         float verticalInput = joystick.Vertical;

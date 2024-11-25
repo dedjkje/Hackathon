@@ -1,3 +1,4 @@
+using Alteruna;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +10,16 @@ public class LookOnZone : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject panel;
 
+    Alteruna.Avatar avatar;
+    private void Start()
+    {
+        avatar = GetComponent<Alteruna.Avatar>();
+
+        if (!avatar.IsMe) return;
+    }
     void Update()
     {
+        if (!avatar.IsMe) return;
         //ѕровер€ем смотрил ли игрок на зону строительства
         if (IsLookingAtBuildingZone())
         {

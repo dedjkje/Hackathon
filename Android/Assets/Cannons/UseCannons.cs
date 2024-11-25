@@ -1,3 +1,4 @@
+using Alteruna;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,20 +13,27 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject playerInterface;
     [SerializeField] GameObject shellPrefab;
     public string currentTag;
-
+    Spawner spawner;
     public Vector3 startPositionCamera;
     public Quaternion startRotationCamera;
+
+    Alteruna.Avatar avatar;
 
     private Camera playerCamera;
     // Start is called before the first frame update
     void Start()
     {
+        avatar = GetComponent<Alteruna.Avatar>();
+
+        if (!avatar.IsMe) return;
+        spawner = GameObject.FindWithTag("NetworkManager").GetComponent<Spawner>();
         playerCamera = transform.Find("Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!avatar.IsMe) return;
         RaycastHit hit;
         Ray ray = transform.Find("Camera").GetComponent<Camera>().ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
@@ -96,7 +104,8 @@ public class UseCannons : MonoBehaviour
             Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
             Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
 
-            GameObject shell = Instantiate(shellPrefab, shellPos, shellRot, transform);            
+            
+            GameObject shell = spawner.Spawn(1, shellPos, shellRot);
             shell.transform.parent = null;
 
             float force = canon.GetComponent<Cannon1Stats>().force;

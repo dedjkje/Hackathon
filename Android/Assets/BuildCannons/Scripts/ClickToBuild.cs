@@ -1,14 +1,21 @@
+using Alteruna;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ClickToBuild : MonoBehaviour
 {
+
+    Spawner spawner;
     [SerializeField] private GameObject cannon;
     [SerializeField] private Camera camera;
-
+    void Awake()
+    {
+        spawner = GameObject.FindWithTag("NetworkManager").GetComponent<Spawner>();
+    }
     public void onClick()
     {
+
         //Скрываем менюшку
         transform.parent.gameObject.SetActive(false);
 
@@ -26,7 +33,7 @@ public class ClickToBuild : MonoBehaviour
             {
                 //Чего ты в мой код полез?
                 //Спваним пушку по кордам билдзоны и деактивируем её
-                Instantiate(cannon, new Vector3(hit.transform.position.x, hit.transform.position.y-1, hit.transform.position.z), Quaternion.identity);
+                spawner.Spawn(0, new Vector3(hit.transform.position.x, hit.transform.position.y - 1, hit.transform.position.z), Quaternion.identity);
                 hit.transform.gameObject.SetActive(false);
                 hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 

@@ -1,3 +1,4 @@
+using Alteruna;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +8,18 @@ public class TrajectoryRenderer : MonoBehaviour
     private LineRenderer lineRenderer;
     public Vector3[] points;
     public int pointNumber;
+
     // Start is called before the first frame update
     void Start()
     {
+
         lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
     public void ShowTrajetory(Vector3 origin, Vector3 speed)
     {
