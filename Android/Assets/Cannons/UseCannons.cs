@@ -103,7 +103,7 @@ public class UseCannons : MonoBehaviour
             shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
 
             Animator animator = canon.GetComponent<Animator>();
-            animator.SetBool("Shoot", true);
+            //animator.SetTrigger("Shoot");
         }
     }
 }
