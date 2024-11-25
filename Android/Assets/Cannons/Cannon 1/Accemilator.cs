@@ -89,11 +89,9 @@ public class Accemilator : MonoBehaviour
         verStvolRotation += dety * speedVer;
         Cannon.Rotate(0, -1 * detx * speedHor, 0);
         horCannonRotation += detx * speedHor;
-        Debug.Log(Input.acceleration);
     }
     public void SetCannon()
     {
-        Debug.Log("SetCannon()");
         onThisCannon = true;
         x = Input.acceleration.x;
         y = Input.acceleration.y;

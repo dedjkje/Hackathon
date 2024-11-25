@@ -32,7 +32,6 @@ public class UseCannons : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 2f))
         {
             Transform objectHit = hit.transform;
-            Debug.Log(hit.transform.tag);
             if (objectHit.CompareTag("Cannon1") ||
                 objectHit.CompareTag("Cannon2") ||
                 objectHit.CompareTag("Cannon3") ||
@@ -70,6 +69,7 @@ public class UseCannons : MonoBehaviour
         playerCamera.transform.rotation = cameraRotation; // Делаем поворот камеры игрока равной камере префаба
 
         GameObject.FindWithTag(currentTag).transform.Find("cannon").transform.Find("stvol").GetComponent<Accemilator>().SetCannon(); // Включаем аксемилятор
+        GetComponent<Canon1Trajectory>().OnCannon();
         playerInterface.SetActive(false);
         cannonInterface.SetActive(true);
 
@@ -82,6 +82,7 @@ public class UseCannons : MonoBehaviour
         playerCamera.transform.rotation = startRotationCamera;
 
         GameObject.FindWithTag(currentTag).transform.Find("cannon").transform.Find("stvol").GetComponent<Accemilator>().UnsetCannon(); // Выключаем аксимилятор
+        GetComponent<Canon1Trajectory>().OutCannon();
 
         playerInterface.SetActive(true);
         cannonInterface.SetActive(false);

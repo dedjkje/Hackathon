@@ -16,6 +16,7 @@ TagManager:
   - Player2
   - PlayerCamera1
   - PlayerCamera2
+  - Trajectory
   layers:
   - Default
   - TransparentFX
