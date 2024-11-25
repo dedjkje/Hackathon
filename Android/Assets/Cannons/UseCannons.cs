@@ -101,6 +101,9 @@ public class UseCannons : MonoBehaviour
             float force = canon.GetComponent<Cannon1Stats>().force;
 
             shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
+
+            Animator animator = canon.GetComponent<Animator>();
+            animator.SetBool("Shoot", true);
         }
     }
 }
