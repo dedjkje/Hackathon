@@ -14,7 +14,7 @@ namespace Alteruna
 		[SerializeField] private GameObject ContentContainer;
 		[SerializeField] private Button StartButton;
 		[SerializeField] private Button LeaveButton;
-
+		[SerializeField] private GameObject roomMenu;
 		public bool ShowUserCount = false;
 
 		// manual refresh can be done by calling Multiplayer.RefreshRoomList();
@@ -196,11 +196,12 @@ namespace Alteruna
 		{
 			StartButton.interactable = false;
 			LeaveButton.interactable = true;
-
+			
 			if (TitleText != null)
 			{
 				TitleText.text = "In Room " + room.Name;
 			}
+			roomMenu.SetActive(false);
 		}
 
 		private void LeftRoom(Multiplayer multiplayer)

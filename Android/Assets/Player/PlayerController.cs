@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (!avatar.IsMe) return;
+        
         // Получаем ввод от игрока
         float horizontalInput = joystick.Horizontal;
         float verticalInput = joystick.Vertical;
