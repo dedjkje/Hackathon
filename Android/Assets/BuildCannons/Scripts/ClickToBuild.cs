@@ -29,14 +29,68 @@ public class ClickToBuild : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1f))
         {
             Transform objectHit = hit.transform;
-            if (objectHit.CompareTag("BuildZone"))
+
+            if (objectHit.CompareTag("BuildZone1"))
             {
                 //Чего ты в мой код полез?
                 //Спваним пушку по кордам билдзоны и деактивируем её
-                spawner.Spawn(0, new Vector3(hit.transform.position.x, hit.transform.position.y - 1, hit.transform.position.z), Quaternion.identity);
+                Vector3 pos = new Vector3(-14.1999998f, 23.6942387f, -9.29000092f);
+                spawner.Spawn(0, pos, Quaternion.identity);
                 hit.transform.gameObject.SetActive(false);
                 hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 
+            }
+            if (objectHit.CompareTag("BuildZone2"))
+            {
+                //Чего ты в мой код полез?
+                //Спваним пушку по кордам билдзоны и деактивируем её
+                Vector3 pos = new Vector3(3.1400001f, 23.6942387f, -9.29000092f);
+                spawner.Spawn(0, pos, Quaternion.identity);
+                hit.transform.gameObject.SetActive(false);
+                hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+            }
+            if (objectHit.CompareTag("BuildZone3"))
+            {
+                //Чего ты в мой код полез?
+                //Спваним пушку по кордам билдзоны и деактивируем её
+                Vector3 pos = new Vector3(20.4000015f, 23.6942387f, -9.29000092f);
+                spawner.Spawn(0, pos, Quaternion.identity);
+                hit.transform.gameObject.SetActive(false);
+                hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+            }
+            if (objectHit.CompareTag("BuildZone4"))
+            {
+                //Чего ты в мой код полез?
+                //Спваним пушку по кордам билдзоны и деактивируем её
+                Vector3 pos = new Vector3(20.4000015f, 23.6942387f, -13.8099995f);
+                spawner.Spawn(0, pos, new Quaternion(Quaternion.identity.x, -180, Quaternion.identity.y, Quaternion.identity.w));
+                hit.transform.gameObject.SetActive(false);
+                hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+            }
+            if (objectHit.CompareTag("BuildZone5"))
+            {
+                //Чего ты в мой код полез?
+                //Спваним пушку по кордам билдзоны и деактивируем её
+                Vector3 pos = new Vector3(3.1400001f, 23.6942387f, -13.8100004f);
+                spawner.Spawn(0, pos, new Quaternion(Quaternion.identity.x, -180, Quaternion.identity.y, Quaternion.identity.w));
+                hit.transform.gameObject.SetActive(false);
+                hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+
+
+            }
+            if (objectHit.CompareTag("BuildZone6"))
+            {
+                //Чего ты в мой код полез?
+                //Спваним пушку по кордам билдзоны и деактивируем её
+                Vector3 pos = new Vector3(-14.1999998f, 23.6942387f, -13.8099995f);
+                spawner.Spawn(0, pos, new Quaternion(Quaternion.identity.x, -180, Quaternion.identity.y, Quaternion.identity.w));
+                hit.transform.gameObject.SetActive(false);
+                hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
             }
         }
     }

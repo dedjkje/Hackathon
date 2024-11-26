@@ -18,6 +18,12 @@ TagManager:
   - PlayerCamera2
   - Trajectory
   - NetworkManager
+  - BuildZone1
+  - BuildZone2
+  - BuildZone3
+  - BuildZone4
+  - BuildZone5
+  - BuildZone6
   layers:
   - Default
   - TransparentFX

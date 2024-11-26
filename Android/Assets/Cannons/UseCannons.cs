@@ -104,8 +104,8 @@ public class UseCannons : MonoBehaviour
             Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
             Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
 
-            
-            GameObject shell = spawner.Spawn(1, shellPos, shellRot);
+            Vector3 shellScale = shellPrefab.transform.localScale;
+            GameObject shell = spawner.Spawn(1, shellPos, shellRot, shellScale);
             shell.transform.parent = null;
 
             float force = canon.GetComponent<Cannon1Stats>().force;

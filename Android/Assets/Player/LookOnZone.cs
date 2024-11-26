@@ -44,7 +44,12 @@ public class LookOnZone : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1f))
         {
             Transform objectHit = hit.transform;
-            if (objectHit.CompareTag("BuildZone"))
+            if (objectHit.CompareTag("BuildZone1") ||
+                objectHit.CompareTag("BuildZone2") ||
+                objectHit.CompareTag("BuildZone3") ||
+                objectHit.CompareTag("BuildZone4") ||
+                objectHit.CompareTag("BuildZone5") ||
+                objectHit.CompareTag("BuildZone6"))
             {
                 return true;
             }

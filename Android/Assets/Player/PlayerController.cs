@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
         
         avatar = GetComponent<Alteruna.Avatar>();
         if (!avatar.IsMe) return;
-
+        
         controller = GetComponent<CharacterController>();
     }
 
