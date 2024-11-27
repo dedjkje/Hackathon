@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    
     public float sensitivity = 0.3f; // Чувствительность мыши
     public float maxYAngle = 80.0f; // Максимальный угол вращения по вертикали
     PhotonView view;

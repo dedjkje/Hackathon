@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5.0f; // Скорость движения персонажа
     PhotonView view;
     private CharacterController controller;
-
+    private Animator animator;
     private Joystick joystick;
     //[SerializeField] private Animator animator;
     
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         
         view = GetComponent<PhotonView>();
+        animator = transform.Find("Knight").GetComponent<Animator>();   
         controller = GetComponent<CharacterController>();
         joystick = GameObject.Find("Canvas (Player Interface)").transform.Find("Floating Joystick").GetComponent<Joystick>();
     }
@@ -38,13 +39,22 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = joystick.Horizontal;
         float verticalInput = joystick.Vertical;
 
-        if (verticalInput + horizontalInput == 0)
+        if (verticalInput * verticalInput  + horizontalInput * horizontalInput > 0 && verticalInput * verticalInput + horizontalInput * horizontalInput != 1)
         {
-            //animator.SetBool("isWalking", false);
+            animator.SetBool("isWalking", true);
         }
         else
         {
-            //animator.SetBool("isWalking", true);
+            animator.SetBool("isWalking", false);
+        }
+
+        if (verticalInput * verticalInput + horizontalInput * horizontalInput == 1)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
         // Вычисляем направление движения
         Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
