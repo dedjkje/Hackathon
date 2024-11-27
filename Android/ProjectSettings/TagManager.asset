@@ -24,6 +24,8 @@ TagManager:
   - BuildZone4
   - BuildZone5
   - BuildZone6
+  - BuildZoneBlue
+  - BuildZoneRed
   layers:
   - Default
   - TransparentFX

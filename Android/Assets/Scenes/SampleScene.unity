@@ -203,7 +203,7 @@ PrefabInstance:
     - target: {fileID: 3633958498768735679, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
       propertyPath: m_TagString
-      value: BuildZone6
+      value: BuildZoneRed
       objectReference: {fileID: 0}
     - target: {fileID: 8384495263233561570, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
@@ -957,7 +957,7 @@ PrefabInstance:
     - target: {fileID: 3633958498768735679, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
       propertyPath: m_TagString
-      value: BuildZone5
+      value: BuildZoneRed
       objectReference: {fileID: 0}
     - target: {fileID: 8384495263233561570, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
@@ -992,6 +992,7 @@ GameObject:
   - component: {fileID: 655812682}
   - component: {fileID: 655812681}
   - component: {fileID: 655812683}
+  - component: {fileID: 655812684}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: NetworkManager
@@ -1155,6 +1156,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ForceSync: 1
+--- !u!114 &655812684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655812680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba585efde0aa6104bbcf87ff70175953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: 600e9e69-b2eb-4fc9-871c-2bcc56271eb4
+  Reliability: 1
+  LocalMethodBehavior: 1
 --- !u!1 &686969988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1531,7 @@ PrefabInstance:
     - target: {fileID: 3633958498768735679, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
       propertyPath: m_TagString
-      value: BuildZone3
+      value: BuildZoneBlue
       objectReference: {fileID: 0}
     - target: {fileID: 8384495263233561570, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
@@ -1613,7 +1630,7 @@ PrefabInstance:
     - target: {fileID: 3633958498768735679, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
       propertyPath: m_TagString
-      value: BuildZone4
+      value: BuildZoneRed
       objectReference: {fileID: 0}
     - target: {fileID: 8384495263233561570, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
@@ -2344,7 +2361,7 @@ PrefabInstance:
     - target: {fileID: 3633958498768735679, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
       propertyPath: m_TagString
-      value: BuildZone1
+      value: BuildZoneBlue
       objectReference: {fileID: 0}
     - target: {fileID: 8384495263233561570, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
@@ -2870,7 +2887,7 @@ PrefabInstance:
     - target: {fileID: 3633958498768735679, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
       propertyPath: m_TagString
-      value: BuildZone2
+      value: BuildZoneBlue
       objectReference: {fileID: 0}
     - target: {fileID: 8384495263233561570, guid: 41b9e5dd1b5e1b14c95d6818e4b82fb7,
         type: 3}
