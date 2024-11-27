@@ -877,6 +877,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8861180440997155986, guid: 7cd6be7810e5e1c449e487ab0805d45b, type: 3}
+--- !u!1 &6255590430428634330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4482779676932972372}
+  m_Layer: 0
+  m_Name: particlePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4482779676932972372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6255590430428634330}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.025285512, y: 3.5558112e-18, z: -2.5202276e-17, w: 0.99968034}
+  m_LocalPosition: {x: 0, y: -0.0005, z: 0.0672}
+  m_LocalScale: {x: 0.024585517, y: 0.024585513, z: 0.024585513}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6067459144414591723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6502588315314224552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1298,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1250569152191940989}
+  - {fileID: 4482779676932972372}
   m_Father: {fileID: 3729904894724787185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &445515252769492584
@@ -1361,6 +1393,9 @@ MonoBehaviour:
   maxRotateHorLeft: -45
   maxRotateVerUp: -33
   maxRotateVerDown: 15
+  KolesaSpeed: 2
+  ParavoeKoleso: {fileID: 582790430127845292}
+  LevoeKoleso: {fileID: 224781774690157496}
 --- !u!114 &6755768208849814243
 MonoBehaviour:
   m_ObjectHideFlags: 0

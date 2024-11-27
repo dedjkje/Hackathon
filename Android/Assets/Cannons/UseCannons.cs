@@ -12,8 +12,15 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject cannonInterface;
     [SerializeField] GameObject playerInterface;
     [SerializeField] GameObject shellPrefab;
+    [SerializeField] GameObject particleShootPrefab;
     public string currentTag;
-
+    public Transform explosionPlace;
+    private int player1Layer; // Слой для игрока
+    private int player2Layer; // Слой для игрока
+    public bool startShake = false; // тряска
+    int i = 0; // тряска
+    public float shakeIntensivity = 0.66f; // тряска
+    int count = 0; // тряска
     public Vector3 startPositionCamera;
     public Quaternion startRotationCamera;
 
@@ -22,11 +29,37 @@ public class UseCannons : MonoBehaviour
     void Start()
     {
         playerCamera = transform.Find("Camera").GetComponent<Camera>();
+        player1Layer = LayerMask.NameToLayer("player1");
+        player2Layer = LayerMask.NameToLayer("player2");
     }
-
+    
     // Update is called once per frame
     void Update()
     {
+        if (startShake)
+        {
+            int index = i % 12;
+            if (index == 0) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+            if (index == 1) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+            if (index == 2) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+            if (index == 3) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            if (index == 4) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            if (index == 5) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            if (index == 6) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            if (index == 7) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            if (index == 8) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            if (index == 9) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+            if (index == 10) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+            if (index == 11) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+
+            i++;
+            count++;
+            if (count == 24)
+            {
+                count = 0;
+                startShake = false;
+            }
+        }
         RaycastHit hit;
         Ray ray = transform.Find("Camera").GetComponent<Camera>().ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
@@ -66,6 +99,14 @@ public class UseCannons : MonoBehaviour
         playerCamera.GetComponent<CameraController>().enabled = false;
         Vector3 cameraPosition = canonCamera.transform.position;
         Quaternion cameraRotation = canonCamera.transform.rotation;
+        if (name == "Player 1(Clone)")
+        {
+            playerCamera.cullingMask &= ~(1 << player1Layer);
+        }
+        if (name == "Player 2(Clone)")
+        {
+            playerCamera.cullingMask &= ~(1 << player2Layer);
+        }
         playerCamera.transform.position = cameraPosition; // Делаем позицию камеры игрока равной камере префаба
         playerCamera.transform.rotation = cameraRotation; // Делаем поворот камеры игрока равной камере префаба
 
@@ -84,7 +125,14 @@ public class UseCannons : MonoBehaviour
 
         GameObject.FindWithTag(currentTag).transform.Find("cannon").transform.Find("stvol").GetComponent<Accemilator>().UnsetCannon(); // Выключаем аксимилятор
         GetComponent<Canon1Trajectory>().OutCannon();
-
+        if (name == "Player 1(Clone)")
+        {
+            playerCamera.cullingMask |= ~(1 << player1Layer);
+        }
+        if (name == "Player 2(Clone)")
+        {
+            playerCamera.cullingMask |= ~(1 << player2Layer);
+        }
         playerInterface.SetActive(true);
         cannonInterface.SetActive(false);
     }
@@ -93,11 +141,14 @@ public class UseCannons : MonoBehaviour
     {
         if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
         {
+            
+            startShake = true; // тряска
             GameObject canon = GameObject.FindWithTag(currentTag);
             Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
             Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
-
-            GameObject shell = PhotonNetwork.Instantiate("Cannon 1 Shell", shellPos, shellRot);            
+            explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
+            PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
+            GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);            
             shell.transform.parent = null;
 
             float force = canon.GetComponent<Cannon1Stats>().force;
