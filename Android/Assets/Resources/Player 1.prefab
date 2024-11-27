@@ -137,7 +137,11 @@ MonoBehaviour:
   playerInterface: {fileID: 4947886931172626255}
   shellPrefab: {fileID: 4511348623772947420, guid: e631e0e6730032045b4cf7c21faf9009,
     type: 3}
+  particleShootPrefab: {fileID: 0}
   currentTag: 
+  explosionPlace: {fileID: 0}
+  startShake: 0
+  shakeIntensivity: 0.66
   startPositionCamera: {x: 0, y: 0, z: 0}
   startRotationCamera: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5029081104176102346

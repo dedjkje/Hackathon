@@ -1393,7 +1393,7 @@ MonoBehaviour:
   maxRotateHorLeft: -45
   maxRotateVerUp: -33
   maxRotateVerDown: 15
-  KolesaSpeed: 2
+  KolesaSpeed: 3
   ParavoeKoleso: {fileID: 582790430127845292}
   LevoeKoleso: {fileID: 224781774690157496}
 --- !u!114 &6755768208849814243
