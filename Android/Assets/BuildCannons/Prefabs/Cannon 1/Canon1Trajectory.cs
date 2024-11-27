@@ -25,7 +25,7 @@ public class Canon1Trajectory : MonoBehaviour
     }
     public void OnCannon()
     {
-        useCannons = GameObject.FindWithTag("Player1").GetComponent<UseCannons>();
+        useCannons = GameObject.FindWithTag("Player2").GetComponent<UseCannons>();
         cannon1Stats = GameObject.FindWithTag(useCannons.currentTag).GetComponent<Cannon1Stats>();
         origin = GameObject.FindWithTag(useCannons.currentTag).transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform;
         trajectoryRenderer = GameObject.FindWithTag("Trajectory").GetComponent<TrajectoryRenderer>();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ClickToBuild : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class ClickToBuild : MonoBehaviour
             {
                 //Чего ты в мой код полез?
                 //Спваним пушку по кордам билдзоны и деактивируем её
-                Instantiate(cannon, new Vector3(hit.transform.position.x, hit.transform.position.y-1, hit.transform.position.z), Quaternion.identity);
+                PhotonNetwork.Instantiate("Cannon 1", new Vector3(hit.transform.position.x, hit.transform.position.y-1, hit.transform.position.z), Quaternion.identity);
                 hit.transform.gameObject.SetActive(false);
                 hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 

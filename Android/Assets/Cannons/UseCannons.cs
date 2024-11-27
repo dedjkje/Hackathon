@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using Photon.Pun;
 
 public class UseCannons : MonoBehaviour
 {
@@ -96,7 +97,7 @@ public class UseCannons : MonoBehaviour
             Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
             Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
 
-            GameObject shell = Instantiate(shellPrefab, shellPos, shellRot, transform);            
+            GameObject shell = PhotonNetwork.Instantiate("Cannon 1 Shell", shellPos, shellRot);            
             shell.transform.parent = null;
 
             float force = canon.GetComponent<Cannon1Stats>().force;
