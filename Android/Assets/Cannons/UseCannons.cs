@@ -11,6 +11,7 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject cannonInterface;
     [SerializeField] GameObject playerInterface;
     [SerializeField] GameObject shellPrefab;
+    [SerializeField] GameObject particleShootPrefab;
     public string currentTag;
 
     public Vector3 startPositionCamera;
@@ -93,18 +94,19 @@ public class UseCannons : MonoBehaviour
         if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
         {
             GameObject canon = GameObject.FindWithTag(currentTag);
+            Transform explosionPlace = GameObject.Find("particlePos").transform;
             Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
             Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
-
+            GameObject particle = Instantiate(particleShootPrefab, explosionPlace.position, explosionPlace.rotation);
             GameObject shell = Instantiate(shellPrefab, shellPos, shellRot, transform);            
             shell.transform.parent = null;
-
+            
             float force = canon.GetComponent<Cannon1Stats>().force;
 
             shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
 
             Animator animator = canon.GetComponent<Animator>();
-            //animator.SetTrigger("Shoot");
+            animator.SetBool("Shoot", true);
         }
     }
 }

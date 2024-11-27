@@ -22,6 +22,10 @@ public class Accemilator : MonoBehaviour
     float horCannonRotation;
     float verStvolRotation;
     bool onThisCannon;
+    public float KolesaSpeed = 2f;
+    [SerializeField] Transform ParavoeKoleso;
+    [SerializeField] Transform LevoeKoleso;
+    [SerializeField] ParticleSystem shoot;
 
     void Awake()
     {
@@ -84,7 +88,16 @@ public class Accemilator : MonoBehaviour
             dety = 0;
             stopRotateVerDown = false;
         }
-
+        if (detx < 0)
+        {
+            ParavoeKoleso.Rotate(0, 0, -detx * KolesaSpeed);
+            LevoeKoleso.Rotate(0, 0, -detx * KolesaSpeed); // ?
+        }
+        if (detx > 0)
+        {
+            LevoeKoleso.Rotate(0, 0, -detx * KolesaSpeed);
+            ParavoeKoleso.Rotate(0, 0, -detx * KolesaSpeed); // ?
+        }
         Stvol.Rotate(-1 * dety * speedVer, 0, 0);
         verStvolRotation += dety * speedVer;
         Cannon.Rotate(0, -1 * detx * speedHor, 0);
