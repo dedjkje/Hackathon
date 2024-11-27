@@ -22,7 +22,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (!view.IsMine) return;
+        else
+        {
+            tag = "Player2";
+            if (GameObject.FindWithTag("Player1") != null )
+            {
+                GameObject.FindWithTag("Player1").transform.Find("Camera").GetComponent<Camera>().enabled = false;
+                GameObject.FindWithTag("Player1").transform.Find("Canvas (Player Interface)").GetComponent<Canvas>().enabled = false;
+                GameObject.FindWithTag("Player1").transform.Find("Canvas (Player Interface)").GetComponent<Canvas>().enabled = false;
+            }
+            
+        }
 
         float horizontalInput = joystick.Horizontal;
         float verticalInput = joystick.Vertical;
