@@ -6,9 +6,9 @@ public class ShellParticle : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] ParticleSystem system;
-    public float interval = 0.06f; // Интервал в секундах
+    public float interval = 0.03f; // Интервал в секундах
     private float timer = 0.0f;
-    public int times = 4;
+    public int times = 5;
     void Start()
     {
     }

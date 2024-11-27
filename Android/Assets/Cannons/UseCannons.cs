@@ -12,6 +12,7 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject playerInterface;
     [SerializeField] GameObject shellPrefab;
     [SerializeField] GameObject particleShootPrefab;
+    public Transform explosionPlace;
     public string currentTag;
 
     public Vector3 startPositionCamera;
@@ -27,6 +28,7 @@ public class UseCannons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         RaycastHit hit;
         Ray ray = transform.Find("Camera").GetComponent<Camera>().ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
@@ -93,8 +95,9 @@ public class UseCannons : MonoBehaviour
     {
         if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
         {
+
             GameObject canon = GameObject.FindWithTag(currentTag);
-            Transform explosionPlace = GameObject.Find("particlePos").transform;
+            explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
             Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
             Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
             GameObject particle = Instantiate(particleShootPrefab, explosionPlace.position, explosionPlace.rotation);
