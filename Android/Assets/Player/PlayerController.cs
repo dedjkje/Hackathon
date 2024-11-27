@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5.0f; // Скорость движения персонажа
-
+    PhotonView view;
     private CharacterController controller;
 
-    public Joystick joystick;
+    private Joystick joystick;
     //[SerializeField] private Animator animator;
     
     private void Start()
     {
+        
+        view = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
+        joystick = GameObject.Find("Canvas (Player Interface)").transform.Find("Floating Joystick").GetComponent<Joystick>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Получаем ввод от игрока
+        
+
         float horizontalInput = joystick.Horizontal;
         float verticalInput = joystick.Vertical;
 
@@ -32,11 +37,13 @@ public class PlayerController : MonoBehaviour
         }
         // Вычисляем направление движения
         Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
-        
+
         // Применяем гравитацию
         moveDirection.y -= 9.81f * Time.deltaTime;
-        
+
         // Двигаем персонажа
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+        // Получаем ввод от игрока
+
     }
 }
