@@ -355,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 25
   cooldown: 2
-  damage: 0
+  damage: 20
   onCooldown: 0
 --- !u!95 &2942950094504870782
 Animator:

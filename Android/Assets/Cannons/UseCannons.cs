@@ -101,11 +101,11 @@ public class UseCannons : MonoBehaviour
         Quaternion cameraRotation = canonCamera.transform.rotation;
         if (name == "Player 1(Clone)")
         {
-            playerCamera.cullingMask &= ~(1 << player1Layer);
+            playerCamera.cullingMask = -1;
         }
         if (name == "Player 2(Clone)")
         {
-            playerCamera.cullingMask &= ~(1 << player2Layer);
+            playerCamera.cullingMask = -1;
         }
         playerCamera.transform.position = cameraPosition; // Делаем позицию камеры игрока равной камере префаба
         playerCamera.transform.rotation = cameraRotation; // Делаем поворот камеры игрока равной камере префаба
@@ -127,11 +127,11 @@ public class UseCannons : MonoBehaviour
         GetComponent<Canon1Trajectory>().OutCannon();
         if (name == "Player 1(Clone)")
         {
-            playerCamera.cullingMask |= ~(1 << player1Layer);
+            playerCamera.cullingMask &= ~(1 << player1Layer);
         }
         if (name == "Player 2(Clone)")
         {
-            playerCamera.cullingMask |= ~(1 << player2Layer);
+            playerCamera.cullingMask &= ~(1 << player2Layer);
         }
         playerInterface.SetActive(true);
         cannonInterface.SetActive(false);
@@ -151,6 +151,8 @@ public class UseCannons : MonoBehaviour
                 explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
                 PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
                 GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+                shell.GetComponent<Damage>().damage = canon.GetComponent<Cannon1Stats>().damage;
+                Debug.Log(canon.GetComponent<Cannon1Stats>().damage);
                 shell.transform.parent = null;
                 float force = canon.GetComponent<Cannon1Stats>().force;
                 canon.GetComponent<Cannon1Stats>().onCooldown = true;
@@ -171,6 +173,8 @@ public class UseCannons : MonoBehaviour
                 explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
                 PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
                 GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+                shell.GetComponent<Damage>().damage = canon.GetComponent<Cannon1Stats>().damage;
+                Debug.Log(canon.GetComponent<Cannon1Stats>().damage);
                 shell.transform.localScale *= 2f;
                 shell.transform.parent = null;
                 canon.GetComponent<Cannon1Stats>().onCooldown = true;
@@ -193,6 +197,8 @@ public class UseCannons : MonoBehaviour
                 explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
                 PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
                 GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+                shell.GetComponent<Damage>().damage = canon.GetComponent<Cannon1Stats>().damage;
+                Debug.Log(canon.GetComponent<Cannon1Stats>().damage);
                 shell.transform.localScale *= 2.8f;
                 shell.transform.parent = null;
                 canon.GetComponent<Cannon1Stats>().onCooldown = true;

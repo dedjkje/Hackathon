@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 3041423436811257272}
   - component: {fileID: -8663925485795043839}
   - component: {fileID: 8993900410703304379}
+  - component: {fileID: -7559394044154421263}
   m_Layer: 0
   m_Name: Cannon Shell
-  m_TagString: Untagged
+  m_TagString: Shell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +105,7 @@ SphereCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
@@ -207,3 +208,16 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &-7559394044154421263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4511348623772947420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948977034c79d7e469cc4f043fde6f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

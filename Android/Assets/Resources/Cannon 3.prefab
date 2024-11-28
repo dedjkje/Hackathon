@@ -87,9 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b7112ac9df34c4481f5500f105ec12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 40
+  force: 25
   cooldown: 15
-  damage: 0
+  damage: 40
   onCooldown: 0
 --- !u!114 &6733220848878512979
 MonoBehaviour:
@@ -1236,7 +1236,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2206335704151364374}
   - component: {fileID: 8603966754746162120}
-  - component: {fileID: 1606788347523328001}
   - component: {fileID: 2269245026457952287}
   m_Layer: 0
   m_Name: Camera
@@ -1253,13 +1252,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8215435820795965987}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.49, z: -4.94}
+  m_LocalRotation: {x: 0.12748148, y: -0, z: -0, w: 0.99184096}
+  m_LocalPosition: {x: 0, y: 3.4899998, z: -4.9400005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9176644815260916468}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 14.648, y: 0, z: 0}
 --- !u!20 &8603966754746162120
 Camera:
   m_ObjectHideFlags: 0
@@ -1311,14 +1310,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1606788347523328001
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8215435820795965987}
-  m_Enabled: 1
 --- !u!114 &2269245026457952287
 MonoBehaviour:
   m_ObjectHideFlags: 0
