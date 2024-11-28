@@ -1389,10 +1389,6 @@ MonoBehaviour:
   Stvol: {fileID: 0}
   speedHor: 0.5
   speedVer: 0.5
-  maxRotateHorRight: 45
-  maxRotateHorLeft: -45
-  maxRotateVerUp: -33
-  maxRotateVerDown: 15
   KolesaSpeed: 3
   typeOfCannon: 1
   ParavoeKoleso: {fileID: 582790430127845292}

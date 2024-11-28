@@ -38,8 +38,64 @@ public class Accemilator : MonoBehaviour
         {
             maxRotateHorRight = 31;
             maxRotateHorLeft = -31;
-            maxRotateVerUp = -1000;
-            maxRotateVerDown = 1000;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 2 && transform.parent.transform.parent.position.z < 10)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 40)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 1 && transform.parent.transform.parent.position.z < 10)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 40)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 3 && transform.parent.transform.parent.position.z < 10)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
+        }
+        if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 40)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -20;
+            maxRotateVerDown = 20;
         }
         Stvol = GetComponent<Transform>();
         Cannon = transform.parent;
@@ -117,16 +173,16 @@ public class Accemilator : MonoBehaviour
         {
             if (detx < 0)
             {
-                ParavoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed);
+                ParavoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed);
                 ParavoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
-                LevoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+                LevoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed); // ? 
                 LevoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
             }
             if (detx > 0)
             {
-                ParavoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed);
+                ParavoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed);
                 ParavoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
-                LevoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+                LevoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed); // ? 
                 LevoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
             }
         }
