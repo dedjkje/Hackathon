@@ -18,9 +18,16 @@ public class Canon1Trajectory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (draw)
+        if (draw) // убрать часьб после первого &&
         {
             trajectoryRenderer.ShowTrajetory(origin.position, origin.forward * cannon1Stats.force / 1); // p = mv
+        }
+        if (cannon1Stats != null) // убрать
+        {
+            if (cannon1Stats.onCooldown) // убрать
+            {
+                trajectoryRenderer.UnshowTrajetory(); // убрать
+            }
         }
     }
     public void OnCannon()
