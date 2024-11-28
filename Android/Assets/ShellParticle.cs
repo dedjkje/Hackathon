@@ -19,6 +19,10 @@ public class ShellParticle : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= interval && times > 0)
         {
+            
+            
+            PhotonNetwork.Instantiate("Dim",transform.position, Quaternion.identity);
+            
             times--;
             PhotonNetwork.Instantiate("Dim",transform.position, Quaternion.identity);
             timer = 0.0f;

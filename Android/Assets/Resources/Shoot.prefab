@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8218036716433143854}
   - component: {fileID: -278864337311753633}
   - component: {fileID: -5629432083759310843}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4958,7 +4958,7 @@ GameObject:
   - component: {fileID: 7537222354380682134}
   - component: {fileID: 2379481624756846129}
   - component: {fileID: 7327539302563322831}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

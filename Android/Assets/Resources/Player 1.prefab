@@ -135,7 +135,7 @@ MonoBehaviour:
   useUpgradePanel: {fileID: 9185482759911069117}
   cannonInterface: {fileID: 5680610936862964670}
   playerInterface: {fileID: 4947886931172626255}
-  shellPrefab: {fileID: 4511348623772947420, guid: e631e0e6730032045b4cf7c21faf9009,
+  shellPrefab: {fileID: 4511348623772947420, guid: 1bd4b4fe0db63eb438e0fe5ef4a7e99f,
     type: 3}
   particleShootPrefab: {fileID: 0}
   currentTag: 
@@ -640,6 +640,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 6622871897445866591}
+    - target: {fileID: 1968453012749052148, guid: ea82fedb064da814c9fbb277d02c34ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Cannon 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2769770936999898438, guid: ea82fedb064da814c9fbb277d02c34ae,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -775,6 +780,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1269110213911257960}
+    - target: {fileID: 5992766576304595875, guid: ea82fedb064da814c9fbb277d02c34ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Cannon 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7771050642274697477, guid: ea82fedb064da814c9fbb277d02c34ae,
         type: 3}
       propertyPath: m_Name

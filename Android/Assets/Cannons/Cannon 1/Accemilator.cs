@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Accemilator : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class Accemilator : MonoBehaviour
     private bool gyroIsEnabled;
     float x;
     float y;
-    public float maxRotateHorRight;
-    public float maxRotateHorLeft;
-    public float maxRotateVerUp;
-    public float maxRotateVerDown;
+    private float maxRotateHorRight;
+    private float maxRotateHorLeft;
+    private float maxRotateVerUp;
+    private float maxRotateVerDown;
     bool stopRotateHorRight;
     bool stopRotateHorLeft;
     bool stopRotateVerUp;
@@ -23,11 +24,23 @@ public class Accemilator : MonoBehaviour
     float verStvolRotation;
     bool onThisCannon;
     public float KolesaSpeed = 2f;
+    public int typeOfCannon;
     [SerializeField] Transform ParavoeKoleso;
     [SerializeField] Transform LevoeKoleso;
+    [SerializeField] Transform ParavoeKolesoLittle;
+    [SerializeField] Transform ParavoeKolesoBig;
+    [SerializeField] Transform LevoeKolesoLittle;
+    [SerializeField] Transform LevoeKolesoBig;
 
     void Awake()
     {
+        if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+        {
+            maxRotateHorRight = 31;
+            maxRotateHorLeft = -31;
+            maxRotateVerUp = -1000;
+            maxRotateVerDown = 1000;
+        }
         Stvol = GetComponent<Transform>();
         Cannon = transform.parent;
         stopRotateHorLeft = false;
@@ -38,7 +51,7 @@ public class Accemilator : MonoBehaviour
         verStvolRotation = 0;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (onThisCannon)
         {
@@ -87,15 +100,35 @@ public class Accemilator : MonoBehaviour
             dety = 0;
             stopRotateVerDown = false;
         }
-        if (detx < 0)
+        if (typeOfCannon == 1)
         {
-            ParavoeKoleso.Rotate(0, 0, -detx * KolesaSpeed);
-            LevoeKoleso.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+            if (detx < 0)
+            {
+                ParavoeKoleso.Rotate(0, 0, -detx * KolesaSpeed);
+                LevoeKoleso.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+            }
+            if (detx > 0)
+            {
+                LevoeKoleso.Rotate(0, 0, -detx * KolesaSpeed);
+                ParavoeKoleso.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+            }
         }
-        if (detx > 0)
+        if (typeOfCannon == 2)
         {
-            LevoeKoleso.Rotate(0, 0, -detx * KolesaSpeed);
-            ParavoeKoleso.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+            if (detx < 0)
+            {
+                ParavoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed);
+                ParavoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
+                LevoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+                LevoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
+            }
+            if (detx > 0)
+            {
+                ParavoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed);
+                ParavoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
+                LevoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed); // ? 
+                LevoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
+            }
         }
         Stvol.Rotate(-1 * dety * speedVer, 0, 0);
         verStvolRotation += dety * speedVer;

@@ -1367,7 +1367,7 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
@@ -1394,8 +1394,13 @@ MonoBehaviour:
   maxRotateVerUp: -33
   maxRotateVerDown: 15
   KolesaSpeed: 3
+  typeOfCannon: 1
   ParavoeKoleso: {fileID: 582790430127845292}
   LevoeKoleso: {fileID: 224781774690157496}
+  ParavoeKolesoLittle: {fileID: 0}
+  ParavoeKolesoBig: {fileID: 0}
+  LevoeKolesoLittle: {fileID: 0}
+  LevoeKolesoBig: {fileID: 0}
 --- !u!114 &6755768208849814243
 MonoBehaviour:
   m_ObjectHideFlags: 0
