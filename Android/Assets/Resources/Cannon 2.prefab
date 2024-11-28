@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasPrefab: {fileID: 1610487632783479694, guid: 9c8d5a87587ec4d4895be50eec36a375,
     type: 3}
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0.8, y: 2, z: 0}
   countdownTime: 5
 --- !u!114 &8659284181704748359
 MonoBehaviour:

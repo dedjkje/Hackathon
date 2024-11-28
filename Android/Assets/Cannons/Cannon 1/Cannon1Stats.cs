@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,8 +22,11 @@ public class Cannon1Stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (onCooldown)
         {
+            gameObject.transform.Find("BuildingCannonTimer(Clone)").GetComponent<Canvas>().enabled = true;
+            gameObject.transform.Find("BuildingCannonTimer(Clone)").transform.Find("Timer").GetComponent<TMP_Text>().text = $"{Mathf.FloorToInt(cooldown - curTime + time + 1)}";
             if (startCoolDown)
             {
                 time = Time.time;
@@ -33,6 +37,7 @@ public class Cannon1Stats : MonoBehaviour
             { 
                 onCooldown = false;
                 startCoolDown = true;
+                gameObject.transform.Find("BuildingCannonTimer(Clone)").transform.Find("Timer").GetComponent<TMP_Text>().text = "";
             }
         }
     }

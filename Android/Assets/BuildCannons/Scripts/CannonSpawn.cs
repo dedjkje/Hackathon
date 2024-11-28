@@ -23,6 +23,7 @@ public class CannonSpawn : MonoBehaviour
         ChangeTrans(0.5f);
 
         canvasInstance = Instantiate(canvasPrefab, transform.position + offset, Quaternion.identity);
+        canvasInstance.transform.Rotate(0, -90, 0);
         canvasInstance.transform.SetParent(transform); // Привязываем Canvas к объекту
         canvasInstance.worldCamera = Camera.main; // Устанавливаем камеру для UI
 
@@ -48,6 +49,7 @@ public class CannonSpawn : MonoBehaviour
             UpdateTimerText();
         }else{ 
             ChangeTrans(1f);
+            timerText.text = "";
             canvasInstance.enabled = false;
             gameObject.GetComponent<CannonSpawn>().enabled = false;
             

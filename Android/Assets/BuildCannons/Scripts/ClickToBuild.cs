@@ -26,7 +26,7 @@ public class ClickToBuild : MonoBehaviour
             Transform objectHit = hit.transform;
             if (objectHit.CompareTag("BuildZone"))
             {
-                //Чего ты в мой код полез?
+                //Чего ты в мой код полез?+
                 //Спваним пушку по кордам билдзоны и деактивируем её
                 PhotonNetwork.Instantiate(name, new Vector3(hit.transform.position.x, hit.transform.position.y-1, hit.transform.position.z), hit.transform.rotation);
                 hit.transform.gameObject.SetActive(false);
