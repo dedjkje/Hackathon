@@ -142,61 +142,65 @@ public class UseCannons : MonoBehaviour
         if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
         {
             
-            startShake = true; // тряска
             GameObject canon = GameObject.FindWithTag(currentTag);
-            Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
-            Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
-            explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
-            PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
-            GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);            
-            shell.transform.parent = null;
+            if (canon.GetComponent<Cannon1Stats>().onCooldown == false)
+            {
+                startShake = true; // тряска
+                Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
+                Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
+                explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
+                PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
+                GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+                shell.transform.parent = null;
+                float force = canon.GetComponent<Cannon1Stats>().force;
+                canon.GetComponent<Cannon1Stats>().onCooldown = true;
+                shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
+                Animator animator = canon.GetComponent<Animator>();
+                //animator.SetTrigger("Shoot");
+            }
 
-            float force = canon.GetComponent<Cannon1Stats>().force;
-
-            shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
-
-            Animator animator = canon.GetComponent<Animator>();
-            //animator.SetTrigger("Shoot");
         }
         if (GameObject.FindWithTag(currentTag).name == "Cannon 2(Clone)")
         {
 
-            startShake = true; // тряска
             GameObject canon = GameObject.FindWithTag(currentTag);
-            Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
-            Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
-            explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
-            PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
-            GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
-            shell.transform.localScale *= 2f;
-            shell.transform.parent = null;
+            if (canon.GetComponent<Cannon1Stats>().onCooldown == false) {
+                startShake = true; // тряска
+                Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
+                Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
+                explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
+                PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
+                GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+                shell.transform.localScale *= 2f;
+                shell.transform.parent = null;
+                canon.GetComponent<Cannon1Stats>().onCooldown = true;
+                float force = canon.GetComponent<Cannon1Stats>().force;
 
-            float force = canon.GetComponent<Cannon1Stats>().force;
+                shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
 
-            shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
-
-            Animator animator = canon.GetComponent<Animator>();
-            //animator.SetTrigger("Shoot");
+                Animator animator = canon.GetComponent<Animator>();
+                //animator.SetTrigger("Shoot");
+            }
         }
         if (GameObject.FindWithTag(currentTag).name == "Cannon 3(Clone)")
         {
-
-            startShake = true; // тряска
             GameObject canon = GameObject.FindWithTag(currentTag);
-            Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
-            Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
-            explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
-            PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
-            GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
-            shell.transform.localScale *= 2.8f;
-            shell.transform.parent = null;
-
-            float force = canon.GetComponent<Cannon1Stats>().force;
-
-            shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
-
-            Animator animator = canon.GetComponent<Animator>();
-            //animator.SetTrigger("Shoot");
+            if (canon.GetComponent<Cannon1Stats>().onCooldown == false)
+            {
+                startShake = true; // тряска
+                Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
+                Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
+                explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
+                PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
+                GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+                shell.transform.localScale *= 2.8f;
+                shell.transform.parent = null;
+                canon.GetComponent<Cannon1Stats>().onCooldown = true;
+                float force = canon.GetComponent<Cannon1Stats>().force;
+                shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
+                Animator animator = canon.GetComponent<Animator>();
+                //animator.SetTrigger("Shoot");
+            }
         }
     }
 }

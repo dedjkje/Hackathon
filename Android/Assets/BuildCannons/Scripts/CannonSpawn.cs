@@ -50,7 +50,7 @@ public class CannonSpawn : MonoBehaviour
             ChangeTrans(1f);
             canvasInstance.enabled = false;
             gameObject.GetComponent<CannonSpawn>().enabled = false;
-
+            
             gameObject.tag = $"Cannon{rules.numberOfCannon}";
             rules.numberOfCannon++;
 
