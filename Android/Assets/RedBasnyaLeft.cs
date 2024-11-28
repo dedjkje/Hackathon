@@ -27,7 +27,7 @@ public class RedBasnyaLeft : MonoBehaviour
         {
             health -= collision.gameObject.GetComponent<Damage>().damage;
             Debug.Log(collision.gameObject.GetComponent<Damage>().damage);
-            hp.fillAmount = health / 100;
+            hp.rectTransform.localScale = new Vector2(health / 100, hp.rectTransform.localScale.y);
         }
         
     }
