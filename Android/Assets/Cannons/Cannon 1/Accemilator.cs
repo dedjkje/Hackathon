@@ -175,15 +175,28 @@ public class Accemilator : MonoBehaviour
             {
                 ParavoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed);
                 ParavoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
-                LevoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed); // ? 
+                LevoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed); // ? 
                 LevoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
             }
             if (detx > 0)
             {
                 ParavoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed);
                 ParavoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
-                LevoeKolesoLittle.Rotate(0, 0, detx * KolesaSpeed); // ? 
+                LevoeKolesoLittle.Rotate(0, 0, -detx * KolesaSpeed); // ? 
                 LevoeKolesoBig.Rotate(0, 0, -detx * KolesaSpeed);
+            }
+        }
+        if (typeOfCannon == 3)
+        {
+            if (detx < 0)
+            {
+                ParavoeKoleso.Rotate(detx * KolesaSpeed, 0, 0);
+                LevoeKoleso.Rotate(-detx * KolesaSpeed, 0, 0); // ? 
+            }
+            if (detx > 0)
+            {
+                LevoeKoleso.Rotate(-detx * KolesaSpeed, 0, 0);
+                ParavoeKoleso.Rotate(detx * KolesaSpeed, 0, 0); // ? 
             }
         }
         Stvol.Rotate(-1 * dety * speedVer, 0, 0);

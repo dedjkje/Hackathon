@@ -178,5 +178,25 @@ public class UseCannons : MonoBehaviour
             Animator animator = canon.GetComponent<Animator>();
             //animator.SetTrigger("Shoot");
         }
+        if (GameObject.FindWithTag(currentTag).name == "Cannon 3(Clone)")
+        {
+
+            startShake = true; // тряска
+            GameObject canon = GameObject.FindWithTag(currentTag);
+            Vector3 shellPos = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.position;
+            Quaternion shellRot = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("ShellPos").transform.rotation;
+            explosionPlace = canon.transform.Find("cannon").transform.Find("stvol").transform.Find("particlePos").transform;
+            PhotonNetwork.Instantiate("Shoot", explosionPlace.position, explosionPlace.rotation);
+            GameObject shell = PhotonNetwork.Instantiate("Cannon Shell", shellPos, shellRot);
+            shell.transform.localScale *= 2.8f;
+            shell.transform.parent = null;
+
+            float force = canon.GetComponent<Cannon1Stats>().force;
+
+            shell.GetComponent<Rigidbody>().AddForce(shell.transform.forward * force, ForceMode.Impulse);
+
+            Animator animator = canon.GetComponent<Animator>();
+            //animator.SetTrigger("Shoot");
+        }
     }
 }
