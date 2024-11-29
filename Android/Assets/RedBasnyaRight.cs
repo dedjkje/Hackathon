@@ -126,10 +126,10 @@ public class RedBasnyaRight : MonoBehaviour
         // Убедимся, что мы установили окончательное значение
         damage.rectTransform.localScale = new Vector2(targetScaleX, hp.rectTransform.localScale.y);
     }
+    [PunRPC]
     void Stage_1()
     {
-        PhotonNetwork.Instantiate("Право(R)", transform.position, transform.rotation);
-        GameObject a = transform.Find("Право(R)(Clone)").gameObject;
+        GameObject a = PhotonNetwork.Instantiate("Право(R)", transform.position, transform.rotation);
         a.transform.Rotate(90, 0, 0);
         a.transform.parent = null;
         a.transform.parent = gameObject.transform;
@@ -192,6 +192,6 @@ public class RedBasnyaRight : MonoBehaviour
             child.gameObject.AddComponent<MeshCollider>();
             child.gameObject.AddComponent<Rigidbody>();
         }
-        transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0), ForceMode.Impulse);
+        PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject);
     }
 }
