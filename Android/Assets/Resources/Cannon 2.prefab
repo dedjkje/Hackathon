@@ -69,6 +69,9 @@ MonoBehaviour:
   force: 80
   cooldown: 5
   damage: 25
+  force_lvl: 0
+  cooldown_lvl: 0
+  damage_lvl: 0
   onCooldown: 0
 --- !u!65 &7846932857531232250
 BoxCollider:
