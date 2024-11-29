@@ -90,6 +90,9 @@ MonoBehaviour:
   force: 25
   cooldown: 15
   damage: 40
+  force_lvl: 0
+  cooldown_lvl: 0
+  damage_lvl: 0
   onCooldown: 0
 --- !u!114 &6733220848878512979
 MonoBehaviour:

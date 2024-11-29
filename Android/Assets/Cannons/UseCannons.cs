@@ -13,6 +13,7 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject playerInterface;
     [SerializeField] GameObject shellPrefab;
     [SerializeField] GameObject particleShootPrefab;
+    [SerializeField] UpdatePanel updatePanel;
     public string currentTag;
     public Transform explosionPlace;
     private int player1Layer; // Слой для игрока
@@ -73,8 +74,12 @@ public class UseCannons : MonoBehaviour
                 objectHit.CompareTag("Cannon5") ||
                 objectHit.CompareTag("Cannon6"))
             {
-                useUpgradePanel.SetActive(true);
-                currentTag = objectHit.tag; // Запоминает тег пушки
+                if (!updatePanel.flag)
+                {
+                    useUpgradePanel.SetActive(true);
+                    currentTag = objectHit.tag; // Запоминает тег пушки
+                }
+                
             }
             else
             {

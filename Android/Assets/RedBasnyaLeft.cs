@@ -27,11 +27,21 @@ public class RedBasnyaLeft : MonoBehaviour
         Debug.Log("Попал");
         if (collision.gameObject.tag == "Shell")
         {
-            health -= collision.gameObject.GetComponent<Damage>().damage;
-            Debug.Log(collision.gameObject.GetComponent<Damage>().damage);
-            hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
-            StartCoroutine(DecreaseHealthBar());
-            GameObject.Find("Player 1(Clone)").GetComponent<Coins>().coins += collision.gameObject.GetComponent<Damage>().damage;
+            if (collision.gameObject.GetComponent<Damage>().damage > health)
+            {
+                GameObject.Find("Player 1(Clone)").GetComponent<Coins>().coins += health;
+                health -= health;
+                hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
+                StartCoroutine(DecreaseHealthBar());
+                
+            }
+            else
+            {
+                health -= collision.gameObject.GetComponent<Damage>().damage;
+                hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
+                StartCoroutine(DecreaseHealthBar());
+                GameObject.Find("Player 1(Clone)").GetComponent<Coins>().coins += collision.gameObject.GetComponent<Damage>().damage;
+            }
         }
         
     }

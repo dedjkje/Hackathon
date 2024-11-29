@@ -9,6 +9,9 @@ public class Cannon1Stats : MonoBehaviour
     public float force;
     public float cooldown;
     public float damage;
+    public int force_lvl =0;
+    public int cooldown_lvl =0;
+    public int damage_lvl =0;
     public bool onCooldown = false;
     private bool startCoolDown = true;
     private float time = 0;

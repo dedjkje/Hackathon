@@ -356,6 +356,9 @@ MonoBehaviour:
   force: 25
   cooldown: 2
   damage: 20
+  force_lvl: 0
+  cooldown_lvl: 0
+  damage_lvl: 0
   onCooldown: 0
 --- !u!95 &2942950094504870782
 Animator:
