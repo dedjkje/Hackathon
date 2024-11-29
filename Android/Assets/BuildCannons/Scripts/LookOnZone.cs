@@ -8,6 +8,7 @@ public class LookOnZone : MonoBehaviour
 
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject crosshair;
 
     void Update()
     {
@@ -15,10 +16,12 @@ public class LookOnZone : MonoBehaviour
         if (IsLookingAtBuildingZone())
         {
             panel.gameObject.SetActive(true);
+            crosshair.SetActive(false);
         }
         else
         {
             panel.gameObject.SetActive(false);
+            crosshair.SetActive(true);
         }
     }
 
@@ -42,5 +45,7 @@ public class LookOnZone : MonoBehaviour
         }
         return false;
     }
+
+    
 
 }

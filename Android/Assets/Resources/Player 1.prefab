@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 800647175191696681}
   - component: {fileID: 9166736152356569251}
   - component: {fileID: 7370034893506563980}
+  - component: {fileID: 7150436133762641255}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player1
@@ -289,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 6622871897445866591}
   panel: {fileID: 3509376556043067498}
+  crosshair: {fileID: 6897896953379997280}
 --- !u!114 &9166736152356569251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +348,19 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &7150436133762641255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623832647493854937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956cc9980dbf28344b69a7d1cd705d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins: 0
 --- !u!1 &5224544132994001502
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +1007,12 @@ MonoBehaviour:
 --- !u!1 &4947886931172626255 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7771050642274697477, guid: ea82fedb064da814c9fbb277d02c34ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 3418862755829861962}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6897896953379997280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8126883153416259626, guid: ea82fedb064da814c9fbb277d02c34ae,
     type: 3}
   m_PrefabInstance: {fileID: 3418862755829861962}
   m_PrefabAsset: {fileID: 0}
