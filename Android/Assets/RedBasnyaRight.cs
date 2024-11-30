@@ -22,6 +22,8 @@ public class RedBasnyaRight : MonoBehaviour
     [SerializeField] GameObject[] Stage6;
     [SerializeField] GameObject[] Stage7;
     [SerializeField] GameObject[] Stage8;
+    [SerializeField] GameObject PravoCenter;
+    [SerializeField] GameObject PravoCenterDestroy;
     bool stage1play = true;
     bool stage2play = true;
     bool stage3play = true;
@@ -186,16 +188,30 @@ public class RedBasnyaRight : MonoBehaviour
     }
     void Stage_8()
     {
+        GetComponent<BoxCollider>().enabled = false;
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
             child.gameObject.AddComponent<Rigidbody>();
         }
-        PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("floor").gameObject);
-        //foreach (Transform child in transform)
-       // { 
-        //    child.gameObject.AddComponent<MeshCollider>();
-        //    child.gameObject.AddComponent<Rigidbody>();
-        //}
+        //PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("floor").gameObject);
+        foreach (Transform child in transform)
+        {
+            if(child.gameObject.name != "Право(R)(Clone)")
+            {
+                child.gameObject.AddComponent<MeshCollider>();
+                child.gameObject.AddComponent<Rigidbody>();
+            }
+        }
         PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject);
+        GameObject.Find("ZAMOOOOMK(1)").transform.Find("pravocenter").transform.position = new Vector3(0, -1000, 0);
+        foreach(Transform child in PravoCenter.transform)
+        {
+            if(child.TryGetComponent<PhotonView>(out PhotonView something))
+            {
+                child.gameObject.GetComponent<MeshCollider>().convex = true;
+                child.gameObject.AddComponent<Rigidbody>();
+            }
+            
+        }
     }
 }
