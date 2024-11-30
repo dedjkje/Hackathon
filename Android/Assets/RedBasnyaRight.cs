@@ -191,11 +191,14 @@ public class RedBasnyaRight : MonoBehaviour
             child.gameObject.AddComponent<Rigidbody>();
         }
         PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("floor").gameObject);
-        //foreach (Transform child in transform)
-       // { 
-        //    child.gameObject.AddComponent<MeshCollider>();
-        //    child.gameObject.AddComponent<Rigidbody>();
-        //}
+        foreach (Transform child in transform)
+        { 
+            if(child.gameObject.name != "Право(R)(Clone)")
+            {
+                child.gameObject.GetComponent<MeshCollider>().convex = true;
+                child.gameObject.AddComponent<Rigidbody>();
+            }
+        }
         PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject);
     }
 }
