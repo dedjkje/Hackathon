@@ -20,6 +20,9 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
     bool stage6play = true;
     bool stage7play = true;
     bool stage8play = true;
+    [SerializeField] BoxCollider a;
+    [SerializeField] BoxCollider b;
+    [SerializeField] BoxCollider c;
     // Start is called before the first frame update
     void Start()
     {
@@ -118,65 +121,93 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
         // Убедимся, что мы установили окончательное значение
         damage.rectTransform.localScale = new Vector2(targetScaleX, hp.rectTransform.localScale.y);
     }
-    //[PunRPC]
-    //void RemoveBoxColliderRPC()
-    //{
-    //    BoxCollider boxCollider = GetComponent<BoxCollider>();
-    //    if (boxCollider != null)
-    //    {
-    //        boxCollider.enabled = false;
-    //    }
-    //}
-    //[PunRPC]
-    //void Delete(int ViewID)
-    //{
-    //    Destroy(PhotonView.Find(ViewID).gameObject);
-    //}
-    //[PunRPC]
-    //void GiveRigidbody(int ViewID)
-    //{
-    //    foreach (Transform child in PhotonView.Find(ViewID).gameObject.transform)
-    //    {
-    //        child.GetComponent<MeshCollider>().convex = true;
-    //        child.AddComponent<Rigidbody>();
-    //    }
-    //}
+    [PunRPC]
+    public void RemoveBoxColliderRPC()
+    {
+        foreach (BoxCollider a in GetComponents<BoxCollider>())
+        {
+            a.enabled = false;
+        }
+    }
+    [PunRPC]
+    public void Delete(int ViewID)
+    {
+        Destroy(PhotonView.Find(ViewID).gameObject);
+    }
+    [PunRPC]
+    public void AddConvex(int ViewID)
+    {
+        foreach (Transform child in PhotonView.Find(ViewID).gameObject.transform)
+        {
+            child.GetComponent<MeshCollider>().convex = true;
+
+        }
+    }
+    [PunRPC]
+    public void GiveRigidbody(int ViewID)
+    {
+        foreach (Transform child in PhotonView.Find(ViewID).gameObject.transform)
+        {
+            child.GetComponent<MeshCollider>().convex = true;
+            child.AddComponent<Rigidbody>();
+        }
+    }
+    void GiveRigidBody(GameObject a)
+    {
+        foreach (Transform t in a.transform) {
+            t.GetComponent<MeshCollider>().convex = true;
+            t.AddComponent<Rigidbody>();
+
+        }
+    }
     void Stage_1()
     {
         photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("MAIN BASHNYA RED").GetComponent<PhotonView>().ViewID);
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("1").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("1").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("1").GetComponent<PhotonView>().gameObject);
     }
     void Stage_2()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("2").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("2").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("2").GetComponent<PhotonView>().gameObject);
     }
     void Stage_3()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("3").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("3").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("3").GetComponent<PhotonView>().gameObject);
     }
     void Stage_4()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("4").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("4").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("4").GetComponent<PhotonView>().gameObject);
     }
     void Stage_5()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("5").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("5").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("5").GetComponent<PhotonView>().gameObject);
     }
     void Stage_6()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("6").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("6").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("6").GetComponent<PhotonView>().gameObject);
     }
     void Stage_7()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("7").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("7").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("7").GetComponent<PhotonView>().gameObject);
     }
     void Stage_8()
     {
-        
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("TargetBoxColliderRPC",RpcTarget.AllBuffered,a,b,c);
+        // photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("AddConvex", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
+        // photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("AddConvex", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
+        GiveRigidBody(transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().gameObject);
+        GiveRigidBody(transform.Find("Центр(R)").Find("another").GetComponent<PhotonView>().gameObject);
         photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("del1").GetComponent<PhotonView>().ViewID);
         photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").Find("Cube (1)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
+        photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("MAIN BASHNYA RED").GetComponent<PhotonView>().ViewID);
     }
 }

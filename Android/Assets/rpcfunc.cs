@@ -18,6 +18,13 @@ public class rpcfunc : MonoBehaviour
         
     }
     [PunRPC]
+    public void TargetBoxColliderRPC(BoxCollider a, BoxCollider b, BoxCollider c)
+    {
+        a.enabled = false;
+        b.enabled = false;
+        c.enabled = false;
+    }
+    [PunRPC]
     public void RemoveBoxColliderRPC()
     {
         foreach(BoxCollider a in GetComponents<BoxCollider>()) {
@@ -28,6 +35,15 @@ public class rpcfunc : MonoBehaviour
     public void Delete(int ViewID)
     {
         Destroy(PhotonView.Find(ViewID).gameObject);
+    }
+    [PunRPC]
+    public void AddConvex(int ViewID)
+    {
+        foreach (Transform child in PhotonView.Find(ViewID).gameObject.transform)
+        {
+            child.GetComponent<MeshCollider>().convex = true;
+            
+        }
     }
     [PunRPC]
     public void GiveRigidbody(int ViewID)
