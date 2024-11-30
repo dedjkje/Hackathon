@@ -82,7 +82,8 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
                 health -= health;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
                 StartCoroutine(DecreaseHealthBar());
-                
+                Destroy(collision.gameObject);
+
             }
             else
             {
@@ -171,9 +172,11 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
     }
     void Stage_8()
     {
+        
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").GetComponent<PhotonView>().ViewID);
         photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("del1").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").Find("Cube (1)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
     }
 }

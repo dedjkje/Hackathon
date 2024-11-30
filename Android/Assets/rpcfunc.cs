@@ -20,10 +20,8 @@ public class rpcfunc : MonoBehaviour
     [PunRPC]
     public void RemoveBoxColliderRPC()
     {
-        BoxCollider boxCollider = GetComponent<BoxCollider>();
-        if (boxCollider != null)
-        {
-            boxCollider.enabled = false;
+        foreach(BoxCollider a in GetComponents<BoxCollider>()) {
+            a.enabled = false;
         }
     }
     [PunRPC]
