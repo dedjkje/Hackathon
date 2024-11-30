@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Unity.VisualScripting;
+using ExitGames.Client.Photon;
+using Photon.Realtime;
 
 public class RedBasnyaRight : MonoBehaviour
 { 
@@ -131,8 +133,8 @@ public class RedBasnyaRight : MonoBehaviour
     {
         //a.transform.parent = null;
         //a.transform.parent = gameObject.transform;
-        photonView = transform.Find("RED BASNYA LEFT").GetComponent<PhotonView>();
-        transform.Find("Право(R)(Clone)").transform.localPosition = new Vector3(0,0,0);
+        photonView = transform.Find("RED BASNYA RIGHT").GetComponent<PhotonView>();
+        
         PhotonNetwork.Destroy(photonView.gameObject);
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
@@ -149,7 +151,7 @@ public class RedBasnyaRight : MonoBehaviour
             //child.gameObject.GetComponent<PhotonTransformViewClassic>().m_RotationModel.SynchronizeEnabled = true;
         }
         transform.Find("Право(R)(Clone)").Find("1-1").AddComponent<Rigidbody>();
-        transform.Find("Право(R)(Clone)").transform.localPosition = new Vector3(0, 0, 0);
+        
     }
     void Stage_2()
     {
@@ -184,16 +186,16 @@ public class RedBasnyaRight : MonoBehaviour
     }
     void Stage_8()
     {
-        foreach(Transform child in transform.Find("Право(R)(Clone)"))
+        foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
             child.gameObject.AddComponent<Rigidbody>();
         }
         PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("floor").gameObject);
-        foreach (Transform child in transform)
-        { 
-            child.gameObject.AddComponent<MeshCollider>();
-            child.gameObject.AddComponent<Rigidbody>();
-        }
+        //foreach (Transform child in transform)
+       // { 
+        //    child.gameObject.AddComponent<MeshCollider>();
+        //    child.gameObject.AddComponent<Rigidbody>();
+        //}
         PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject);
     }
 }
