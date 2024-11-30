@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
 
-public class RedBasnyaRight : MonoBehaviour
+public class RedBasnyaRight : MonoBehaviourPunCallbacks
 { 
     public float health = 100;
     public Image hp;
@@ -30,7 +30,7 @@ public class RedBasnyaRight : MonoBehaviour
     bool stage6play = true;     
     bool stage7play = true;
     bool stage8play = true;
-    public PhotonView photonView;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -128,14 +128,13 @@ public class RedBasnyaRight : MonoBehaviour
         // Убедимся, что мы установили окончательное значение
         damage.rectTransform.localScale = new Vector2(targetScaleX, hp.rectTransform.localScale.y);
     }
-    
     void Stage_1()
     {
         //a.transform.parent = null;
         //a.transform.parent = gameObject.transform;
-        photonView = transform.Find("RED BASNYA RIGHT").GetComponent<PhotonView>();
-        
-        PhotonNetwork.Destroy(photonView.gameObject);
+
+
+        PhotonNetwork.Destroy(transform.Find("RED BASNYA RIGHT").gameObject);
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
             //child.gameObject.AddComponent<PhotonView>();
@@ -184,6 +183,15 @@ public class RedBasnyaRight : MonoBehaviour
         transform.Find("Право(R)(Clone)").Find("7-3").AddComponent<Rigidbody>();
         transform.Find("Право(R)(Clone)").Find("7-4").AddComponent<Rigidbody>();
     }
+    [PunRPC]
+    void RemoveBoxColliderRPC()
+    {
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+    }
     void Stage_8()
     {
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
@@ -200,5 +208,10 @@ public class RedBasnyaRight : MonoBehaviour
             }
         }
         PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject);
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
+        }
     }
 }
