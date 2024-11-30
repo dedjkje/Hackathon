@@ -89,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 25
   cooldown: 15
-  damage: 400
+  damage: 40
   force_lvl: 0
   cooldown_lvl: 0
   damage_lvl: 0

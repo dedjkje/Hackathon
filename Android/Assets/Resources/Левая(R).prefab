@@ -582,7 +582,6 @@ Transform:
   - {fileID: 4916540459849707425}
   - {fileID: 1159782391067221475}
   - {fileID: 7173548046333630599}
-  - {fileID: 1103837486280990350}
   - {fileID: 4681048814131855071}
   - {fileID: 4880764386659434118}
   - {fileID: 6773972153141903957}
@@ -9097,6 +9096,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9024381414346757140}
+  - {fileID: 1103837486280990350}
   m_Father: {fileID: 6889080768378545408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5678941486124772533
@@ -14359,7 +14359,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3518957936805158094}
+  m_Father: {fileID: 256891813006780506}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5326128174182982319
 MeshFilter:
@@ -14451,7 +14451,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 5284147632745735066}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

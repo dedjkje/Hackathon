@@ -238,12 +238,19 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
     }
     void Stage_8()
     {
+        photonView.RPC("Delete", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (1)").transform.Find("delete").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("Delete", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (1)").transform.Find("ЛевоЦентр(R)").transform.Find("del").GetComponent<PhotonView>().ViewID);
         //photonView.RPC("TargetBoxColliderRPC",RpcTarget.AllBuffered,a,b,c);
         // photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
         //photonView.RPC("AddConvex", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("other").GetComponent<PhotonView>().ViewID);
         // photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").GetComponent<PhotonView>().ViewID);
         //photonView.RPC("AddConvex", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("other").GetComponent<PhotonView>().ViewID);
         foreach (Transform t in transform.Find("Левая(R)").Find("other").transform)
+        {
+            t.GetComponent<MeshCollider>().convex = true;
+            t.AddComponent<Rigidbody>();
+        }
+        foreach (Transform t in GameObject.Find("ZAMOOOOMK (1)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").transform)
         {
             t.GetComponent<MeshCollider>().convex = true;
             t.AddComponent<Rigidbody>();

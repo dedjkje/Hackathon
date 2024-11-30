@@ -85,7 +85,7 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
                 health -= health;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
                 StartCoroutine(DecreaseHealthBar());
-                Destroy(collision.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject);
 
             }
             else
