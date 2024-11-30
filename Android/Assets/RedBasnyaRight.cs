@@ -126,34 +126,36 @@ public class RedBasnyaRight : MonoBehaviour
         // Убедимся, что мы установили окончательное значение
         damage.rectTransform.localScale = new Vector2(targetScaleX, hp.rectTransform.localScale.y);
     }
-    [PunRPC]
+    
     void Stage_1()
     {
-        GameObject a = PhotonNetwork.Instantiate("Право(R)", transform.position, transform.rotation);
-        a.transform.Rotate(90, 0, 0);
-        a.transform.parent = null;
-        a.transform.parent = gameObject.transform;
-        photonView = GetComponentInChildren<PhotonView>();
+        //a.transform.parent = null;
+        //a.transform.parent = gameObject.transform;
+        photonView = transform.Find("RED BASNYA LEFT").GetComponent<PhotonView>();
+        transform.Find("Право(R)(Clone)").transform.localPosition = new Vector3(0,0,0);
         PhotonNetwork.Destroy(photonView.gameObject);
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
-            child.gameObject.AddComponent<PhotonView>();
+            //child.gameObject.AddComponent<PhotonView>();
             child.gameObject.AddComponent<MeshCollider>();
             child.gameObject.GetComponent<MeshCollider>().convex = true;
-            PhotonView photonViewChild = child.gameObject.GetComponent<PhotonView>();
-            child.gameObject.AddComponent<PhotonTransformViewClassic>();
-            photonViewChild.ObservedComponents = new List<Component>() { child.gameObject.GetComponent<PhotonTransformViewClassic>() };
-            photonViewChild.ViewID = PhotonNetwork.AllocateViewID(0);
-            child.gameObject.GetComponent<PhotonTransformViewClassic>().m_PositionModel.SynchronizeEnabled = true;
+            //PhotonView photonViewChild = child.gameObject.GetComponent<PhotonView>();
+            // child.gameObject.AddComponent<PhotonTransformViewClassic>();
+            child.gameObject.GetComponent<PhotonTransformViewClassic>().m_PositionModel.SynchronizeEnabled = true ;
             child.gameObject.GetComponent<PhotonTransformViewClassic>().m_RotationModel.SynchronizeEnabled = true;
+            //photonViewChild.ObservedComponents = new List<Component>() { child.gameObject.GetComponent<PhotonTransformViewClassic>() };
+            //photonViewChild.ViewID = PhotonNetwork.AllocateViewID(0);
+            //child.gameObject.GetComponent<PhotonTransformViewClassic>().m_PositionModel.SynchronizeEnabled = true;
+            //child.gameObject.GetComponent<PhotonTransformViewClassic>().m_RotationModel.SynchronizeEnabled = true;
         }
         transform.Find("Право(R)(Clone)").Find("1-1").AddComponent<Rigidbody>();
-        
+        transform.Find("Право(R)(Clone)").transform.localPosition = new Vector3(0, 0, 0);
     }
     void Stage_2()
     {
         transform.Find("Право(R)(Clone)").Find("2-1").AddComponent<Rigidbody>();
     }
+
     void Stage_3()
     {
         transform.Find("Право(R)(Clone)").Find("3-1").AddComponent<Rigidbody>();
