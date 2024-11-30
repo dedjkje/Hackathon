@@ -192,6 +192,18 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
             boxCollider.enabled = false;
         }
     }
+    [PunRPC] void Delete(int ViewID)
+    {
+        Destroy(PhotonView.Find(ViewID).gameObject);
+    }
+    [PunRPC] void GiveRigidbody(int ViewID)
+    {
+        foreach(Transform child in PhotonView.Find(ViewID).gameObject.transform)
+        {
+            child.GetComponent<MeshCollider>().convex = true;
+            child.AddComponent<Rigidbody>();
+        }
+    }
     void Stage_8()
     {
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
@@ -213,5 +225,8 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
         {
             photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
         }
+        photonView.RPC("Delete", RpcTarget.AllBuffered, 164);
+        photonView.RPC("Delete", RpcTarget.AllBuffered, 170);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, 165);
     }
 }
