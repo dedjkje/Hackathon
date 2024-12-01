@@ -57,7 +57,7 @@ public class ClickToBuild : MonoBehaviourPunCallbacks
 
     [PunRPC] void Delete(int objectId)
     {
-        GameObject objToRemove = PhotonView.Find(objectId).gameObject
+        GameObject objToRemove = PhotonView.Find(objectId).gameObject;
         if (objToRemove != null)
         {
             // Удалите объект из сети
