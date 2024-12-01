@@ -29,7 +29,7 @@ public class BlueBashyqa : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Damage>().damage > health)
             {
-                GameObject.Find("Player 1(Clone)").GetComponent<Coins>().coins += health;
+                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
                 health -= health;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
                 StartCoroutine(DecreaseHealthBar());
