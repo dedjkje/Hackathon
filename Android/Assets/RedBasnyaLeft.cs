@@ -250,15 +250,16 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
             t.GetComponent<MeshCollider>().convex = true;
             t.AddComponent<Rigidbody>();
         }
+
+        //GiveRigidBody(transform.Find("Левая(R)").Find("another").GetComponent<PhotonView>().gameObject);
+        //photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("del1").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("another").Find("Cube (1)").GetComponent<PhotonView>().ViewID);
+        
         foreach (Transform t in GameObject.Find("ZAMOOOOMK (1)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").transform)
         {
             t.GetComponent<MeshCollider>().convex = true;
             t.AddComponent<Rigidbody>();
         }
-        //GiveRigidBody(transform.Find("Левая(R)").Find("another").GetComponent<PhotonView>().gameObject);
-        //photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("del1").GetComponent<PhotonView>().ViewID);
-        //photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("another").Find("Cube (1)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
-        
     }
 }

@@ -28,8 +28,4 @@ public class ShellParticle : MonoBehaviour
             timer = 0.0f;
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        PhotonNetwork.Destroy(gameObject);
-    }
 }

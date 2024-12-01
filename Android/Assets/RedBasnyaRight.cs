@@ -209,9 +209,10 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
     {
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
+            child.gameObject.GetComponent<MeshCollider>().convex = true;
             child.gameObject.AddComponent<Rigidbody>();
         }
-        PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("floor").gameObject);
+        //PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("floor").gameObject);
         foreach (Transform child in transform)
         { 
             if(child.gameObject.name != "Право(R)(Clone)")
@@ -220,7 +221,7 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
                 child.gameObject.AddComponent<Rigidbody>();
             }
         }
-        PhotonNetwork.Destroy(transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject);
+        photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Право(R)(Clone)").Find("Cube.046_cell.067").gameObject.GetComponent<PhotonView>().ViewID);
         BoxCollider boxCollider = GetComponent<BoxCollider>();
         if (boxCollider != null)
         {
@@ -228,6 +229,22 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
         }
         photonView.RPC("Delete", RpcTarget.AllBuffered, 164);
         photonView.RPC("Delete", RpcTarget.AllBuffered, 170);
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, 165);
+        PhotonView.Find(20).GetComponent<MeshCollider>().convex = true;
+        PhotonView.Find(20).AddComponent<Rigidbody>();
+        PhotonView.Find(21).GetComponent<MeshCollider>().convex = true;
+        PhotonView.Find(21).AddComponent<Rigidbody>();
+        PhotonView.Find(22).GetComponent<MeshCollider>().convex = true;
+        PhotonView.Find(22).AddComponent<Rigidbody>();
+        PhotonView.Find(23).GetComponent<MeshCollider>().convex = true;
+        PhotonView.Find(23).AddComponent<Rigidbody>();
+        PhotonView.Find(24).GetComponent<MeshCollider>().convex = true;
+        PhotonView.Find(24).AddComponent<Rigidbody>();
+
+        foreach (Transform child in PhotonView.Find(165).gameObject.transform)
+        {
+            child.GetComponent<MeshCollider>().convex = true;
+            child.AddComponent<Rigidbody>();
+        }
+        
     }
 }
