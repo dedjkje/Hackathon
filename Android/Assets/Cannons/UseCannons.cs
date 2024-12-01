@@ -39,7 +39,7 @@ public class UseCannons : MonoBehaviour
     {
         if (startShake)
         {
-            int index = i % 12;
+            int index = i % 10;
             if (index == 0) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
             if (index == 1) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
             if (index == 2) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
@@ -48,14 +48,14 @@ public class UseCannons : MonoBehaviour
             if (index == 5) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
             if (index == 6) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
             if (index == 7) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
-            if (index == 8) playerCamera.transform.Rotate(0, 0, -shakeIntensivity);
+            
+            if (index == 8) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
             if (index == 9) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
-            if (index == 10) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
-            if (index == 11) playerCamera.transform.Rotate(0, 0, shakeIntensivity);
+            
 
             i++;
             count++;
-            if (count == 24)
+            if (count == 20)
             {
                 count = 0;
                 startShake = false;
