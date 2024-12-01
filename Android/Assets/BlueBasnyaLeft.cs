@@ -20,9 +20,11 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
     bool stage6play;
     bool stage7play;
     bool stage8play;
+    bool canDelete;
     // Start is called before the first frame update
     void Start()
     {
+        canDelete = true;
         maxhp = health;
         stage1play = true;
         stage2play = true;
@@ -39,42 +41,42 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
     {
         if (health < 100 && stage1play)
         {
-            Stage_1();
+            photonView.RPC("Stage_1", RpcTarget.All);
             stage1play = false;
         }
         if (health < 100 - 100f / 7 && stage2play)
         {
-            Stage_2();
+            photonView.RPC("Stage_2", RpcTarget.All);
             stage2play = false;
         }
         if (health < 100 - 100f / 7 * 2 && stage3play)
         {
-            Stage_3();
+            photonView.RPC("Stage_3", RpcTarget.All);
             stage3play = false;
         }
         if (health < 100 - 100f / 7 * 3 && stage4play)
         {
-            Stage_4();
+            photonView.RPC("Stage_4", RpcTarget.All);
             stage4play = false;
         }
         if (health < 100 - 100f / 7 * 4 && stage5play)
         {
-            Stage_5();
+            photonView.RPC("Stage_5", RpcTarget.All);
             stage5play = false;
         }
         if (health < 100 - 100f / 7 * 5 && stage6play)
         {
-            Stage_6();
+            photonView.RPC("Stage_6", RpcTarget.All);
             stage6play = false;
         }
         if (health < 100 - 100f / 7 * 6 && stage7play)
         {
-            Stage_7();
+            photonView.RPC("Stage_7", RpcTarget.All);
             stage7play = false;
         }
         if (health == 0 && stage8play)
         {
-            Stage_8();
+            photonView.RPC("Stage_8", RpcTarget.All);
             stage8play = false;
         }
     }
@@ -153,7 +155,7 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         foreach (Transform child in PhotonView.Find(ViewID).gameObject.transform)
         {
             child.GetComponent<MeshCollider>().convex = true;
-            child.AddComponent<Rigidbody>();
+            child.AddComponent<PhotonRigidbodyView>();
         }
     }
     void GiveRigidBody(GameObject a)
@@ -165,10 +167,16 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
 
         }
     }
+    [PunRPC]
     void Stage_1()
     {
-        photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("RED BASHNYA LEFT").GetComponent<PhotonView>().ViewID);
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("1").GetComponent<PhotonView>().ViewID);
+        if (canDelete)
+        {
+            photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("RED BASHNYA LEFT").GetComponent<PhotonView>().ViewID);
+            canDelete = false;
+        }
+       
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("1").GetComponent<PhotonView>().ViewID);
         //GiveRigidBody(transform.Find("Левая(R)").Find("1").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("1").transform)
         //{
@@ -176,9 +184,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
        // }
     }
+    [PunRPC]
     void Stage_2()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("2").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("2").GetComponent<PhotonView>().ViewID);
         //GiveRigidBody(transform.Find("Левая(R)").Find("2").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("2").transform)
         //{
@@ -186,9 +195,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC]
     void Stage_3()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("3").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("3").GetComponent<PhotonView>().ViewID);
         //GiveRigidBody(transform.Find("Левая(R)").Find("3").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("3").transform)
         //{
@@ -196,9 +206,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC]
     void Stage_4()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("4").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("4").GetComponent<PhotonView>().ViewID);
         //GiveRigidBody(transform.Find("Левая(R)").Find("4").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("4").transform)
         //{
@@ -206,9 +217,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC]
     void Stage_5()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("5").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("5").GetComponent<PhotonView>().ViewID);
         //GiveRigidBody(transform.Find("Левая(R)").Find("5").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("5").transform)
         //{
@@ -216,9 +228,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC]
     void Stage_6()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("6").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("6").GetComponent<PhotonView>().ViewID);
         // GiveRigidBody(transform.Find("Левая(R)").Find("6").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("6").transform)
         //{
@@ -226,9 +239,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC]
     void Stage_7()
     {
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("7").GetComponent<PhotonView>().ViewID);
+        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("7").GetComponent<PhotonView>().ViewID);
         //GiveRigidBody(transform.Find("Левая(R)").Find("7").GetComponent<PhotonView>().gameObject);
         //foreach (Transform t in transform.Find("Левая(R)").Find("7").transform)
         //{
@@ -236,6 +250,7 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC]
     void Stage_8()
     {
         photonView.RPC("Delete", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (2)").transform.Find("delete").GetComponent<PhotonView>().ViewID);
@@ -250,17 +265,17 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("other").GetComponent<PhotonView>().ViewID);
-        photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").GetComponent<PhotonView>().ViewID);
+        //photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("another").GetComponent<PhotonView>().ViewID);
         
         //GiveRigidBody(transform.Find("Левая(R)").Find("another").GetComponent<PhotonView>().gameObject);
         //photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("del1").GetComponent<PhotonView>().ViewID);
         //photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Левая(R)").Find("another").Find("Cube (1)").GetComponent<PhotonView>().ViewID);
 
-        foreach (Transform t in GameObject.Find("ZAMOOOOMK (2)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").transform)
-        {
-            t.GetComponent<MeshCollider>().convex = true;
-            t.AddComponent<Rigidbody>();
-        }
+       // foreach (Transform t in GameObject.Find("ZAMOOOOMK (2)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").transform)
+       // {
+       //     t.GetComponent<MeshCollider>().convex = true;
+       //     t.AddComponent<Rigidbody>();
+       // }
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (2)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
     }

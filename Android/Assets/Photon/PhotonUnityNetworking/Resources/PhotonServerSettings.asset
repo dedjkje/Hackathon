@@ -55,6 +55,7 @@ MonoBehaviour:
   - Stage_6
   - Stage_7
   - Stage_8
+  - GiveRigidbodyToObject
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
