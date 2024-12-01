@@ -8,13 +8,13 @@ public class ClickToBuild : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject cannon;
     [SerializeField] private Camera camera;
     private GameObject tools;
-    [PunRPC] void destroyTools()
-    {
-        PhotonNetwork.Destroy(tools);
-    }
+    PhotonView View;
+    
     public void onClick()
     {
-
+        View = transform.parent.transform.parent.transform.parent.GetComponent<PhotonView>();
+        if (!View.IsMine) return
+                ;
         //Скрываем менюшку
         transform.parent.gameObject.SetActive(false);
 
@@ -27,26 +27,44 @@ public class ClickToBuild : MonoBehaviourPunCallbacks
 
         if (Physics.Raycast(ray, out hit, 1f))
         {
-            Transform objectHit = hit.transform;
+            //hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            GameObject objectHit = hit.transform.gameObject;
+            PhotonView view = objectHit.GetComponent<PhotonView>();
+            photonView.RPC("Delete", RpcTarget.AllBuffered, view.ViewID);
             if (objectHit.CompareTag("BuildZone"))
             {
+                
                 GameObject cannon = PhotonNetwork.Instantiate(name, new Vector3(hit.transform.position.x, hit.transform.position.y - 1, hit.transform.position.z), hit.transform.rotation);
                 if (transform.parent.transform.parent.transform.parent.name == "Player 1(Clone)")
                 {
+                    
+                    
                     cannon.GetComponent<ChangeMaterials>().ChangeToTransparentBlue();
+                    
                 }
                 else
                 {
+                    
                     cannon.GetComponent<ChangeMaterials>().ChangeToTransparentRed();
+                   
                 }
-                tools = hit.transform.gameObject;
-                hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
-
-                photonView.RPC("destroyTools", RpcTarget.AllBuffered);
+                
+                
                 
             }
         }
     }
+
+    [PunRPC] void Delete(int objectId)
+    {
+        GameObject objToRemove = PhotonView.Find(objectId).gameObject
+        if (objToRemove != null)
+        {
+            // Удалите объект из сети
+            PhotonNetwork.Destroy(objToRemove);
+        }
+    }
+
 
 
     

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class UpdatePanel : MonoBehaviour
 {
+    PhotonView photonView;
     [SerializeField] GameObject updatePanel;
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject joystick;
@@ -37,6 +39,8 @@ public class UpdatePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
+        if (!photonView.IsMine) return;
         coins = GetComponent<Coins>();
         flag = false;
     }
@@ -44,13 +48,14 @@ public class UpdatePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine) return;
         if (flag)
         {
             Debug.Log(useCannos.currentTag);
             cannon1Stats = GameObject.FindWithTag(useCannos.currentTag).GetComponent<Cannon1Stats>();
-            damageCoins.text = $"{(double)coins.coins}/30";
-            cooldownCoins.text = $"{(double)coins.coins}/25";
-            distanceCoins.text = $"{(double)coins.coins}/20";
+            damageCoins.text = $"{(int)coins.coins}/30";
+            cooldownCoins.text = $"{(int)coins.coins}/25";
+            distanceCoins.text = $"{(int)coins.coins}/20";
 
             
 

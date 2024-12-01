@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
 
         // Применяем гравитацию
-        moveDirection.y -= 9.81f * Time.deltaTime;
+        moveDirection.y -= 2f;
 
         // Двигаем персонажа
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
