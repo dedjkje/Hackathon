@@ -29,8 +29,8 @@ public class ClickToBuild : MonoBehaviourPunCallbacks
         {
             //hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
             GameObject objectHit = hit.transform.gameObject;
-            PhotonView view = objectHit.GetComponent<PhotonView>();
-            photonView.RPC("Delete", RpcTarget.AllBuffered, view.ViewID);
+            objectHit.transform.parent.GetComponent<SelfDisrtuct>().StartRpcDeleteObj(objectHit.GetComponent<PhotonView>().ViewID);
+
             if (objectHit.CompareTag("BuildZone"))
             {
                 
@@ -55,15 +55,7 @@ public class ClickToBuild : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC] void Delete(int objectId)
-    {
-        GameObject objToRemove = PhotonView.Find(objectId).gameObject;
-        if (objToRemove != null)
-        {
-            // Удалите объект из сети
-            PhotonNetwork.Destroy(objToRemove);
-        }
-    }
+    
 
 
 
