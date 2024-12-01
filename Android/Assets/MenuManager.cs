@@ -8,8 +8,8 @@ using TMPro;
 
 public class MenuManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField] TMP_InputField createInput;
-    [SerializeField] TMP_InputField joinInput;
+    [SerializeField] InputField createInput;
+    [SerializeField] InputField joinInput;
     public override void OnConnectedToMaster()
     {
         RoomOptions roomOptions = new RoomOptions();

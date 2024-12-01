@@ -55,7 +55,7 @@ public class CannonSpawn : MonoBehaviour
             
             gameObject.tag = $"Cannon{rules.numberOfCannon}";
             rules.numberOfCannon++;
-
+            gameObject.GetComponent<ChangeMaterials>().RestoreOriginalMaterials();
             //gameObject.GetComponent<CannonSpawn>().enabled = false;
         }
     }

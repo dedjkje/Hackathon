@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
     private Joystick joystick;
+    
     //[SerializeField] private Animator animator;
     
     private void Start()
@@ -67,4 +68,7 @@ public class PlayerController : MonoBehaviour
         // Получаем ввод от игрока
 
     }
+
+    
+
 }

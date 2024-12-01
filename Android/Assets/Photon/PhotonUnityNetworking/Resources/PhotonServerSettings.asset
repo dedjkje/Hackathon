@@ -56,6 +56,13 @@ MonoBehaviour:
   - Stage_7
   - Stage_8
   - GiveRigidbodyToObject
+  - destroyTools
+  - ChangeToTransparentBlue
+  - ChangeToTransparentRed
+  - RestoreOriginalMaterials
+  - OriginalMaterials
+  - TransparentBlue
+  - TransparentRed
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

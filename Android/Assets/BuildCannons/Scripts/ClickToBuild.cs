@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ClickToBuild : MonoBehaviour
+public class ClickToBuild : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject cannon;
     [SerializeField] private Camera camera;
-
+    private GameObject tools;
+    [PunRPC] void destroyTools()
+    {
+        PhotonNetwork.Destroy(tools);
+    }
     public void onClick()
     {
 
@@ -26,16 +30,24 @@ public class ClickToBuild : MonoBehaviour
             Transform objectHit = hit.transform;
             if (objectHit.CompareTag("BuildZone"))
             {
-                //Чего ты в мой код полез?+
-                //Спваним пушку по кордам билдзоны и деактивируем её
-                PhotonNetwork.Instantiate(name, new Vector3(hit.transform.position.x, hit.transform.position.y-1, hit.transform.position.z), hit.transform.rotation);
-                hit.transform.gameObject.SetActive(false);
+                GameObject cannon = PhotonNetwork.Instantiate(name, new Vector3(hit.transform.position.x, hit.transform.position.y - 1, hit.transform.position.z), hit.transform.rotation);
+                if (transform.parent.transform.parent.transform.parent.name == "Player 1(Clone)")
+                {
+                    cannon.GetComponent<ChangeMaterials>().ChangeToTransparentBlue();
+                }
+                else
+                {
+                    cannon.GetComponent<ChangeMaterials>().ChangeToTransparentRed();
+                }
+                tools = hit.transform.gameObject;
                 hit.transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+                photonView.RPC("destroyTools", RpcTarget.AllBuffered);
                 
             }
         }
     }
 
-    
 
+    
 }
