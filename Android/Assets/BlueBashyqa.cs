@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class BlueBashyqa : MonoBehaviour
+public class BlueBashyqa : MonoBehaviourPunCallbacks
 {
     public float health = 100;
     public Image hp;
@@ -32,19 +33,22 @@ public class BlueBashyqa : MonoBehaviour
                 GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
                 health -= health;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
-                StartCoroutine(DecreaseHealthBar());
+                //StartCoroutine(DecreaseHealthBar());
+                photonView.RPC("DecreaseHealthBar", RpcTarget.All);
             }
             else
             {
                 health -= collision.gameObject.GetComponent<Damage>().damage;
                 hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
-                StartCoroutine(DecreaseHealthBar());
+                //StartCoroutine(DecreaseHealthBar());
+                photonView.RPC("DecreaseHealthBar", RpcTarget.All);
                 GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += collision.gameObject.GetComponent<Damage>().damage;
             }
             
         }
 
     }
+    [PunRPC]
     private IEnumerator DecreaseHealthBar()
     {
         // ∆дем 0.5 секунды

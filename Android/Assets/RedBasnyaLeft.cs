@@ -21,6 +21,7 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
     bool stage7play ;
     bool stage8play;
     public GameObject cannon;
+    public GameObject cannonM;
     // Start is called before the first frame update
     void Start()
     {
@@ -176,6 +177,11 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
             child.AddComponent<Rigidbody>();
         }
     }
+    [PunRPC]
+    private void stop(int ViewID)
+    {
+        PhotonView.Find(ViewID).gameObject.GetComponent<UseCannons>().stopUsingCannon();
+    }
     void GiveRigidBody(GameObject a)
     {
         foreach (Transform t in a.transform)
@@ -282,10 +288,11 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
             t.AddComponent<Rigidbody>();
         }
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
-        
-        GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().stopUsingCannon();
+
+        //GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().stopUsingCannon();
+        photonView.RPC("stop", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
-        photonView.RPC("Untag", RpcTarget.AllBuffered, cannon.GetComponentInParent<PhotonView>().ViewID);
+        //photonView.RPC("Untag", RpcTarget.AllBuffered, cannonM.GetComponent<PhotonView>().ViewID);
     }
 }

@@ -14,6 +14,7 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject shellPrefab;
     [SerializeField] GameObject particleShootPrefab;
     [SerializeField] UpdatePanel updatePanel;
+    [SerializeField] Transform posCamera;
     public string currentTag;
     public Transform explosionPlace;
     private int player1Layer; // Слой для игрока
@@ -25,7 +26,7 @@ public class UseCannons : MonoBehaviour
     public Vector3 startPositionCamera;
     public Quaternion startRotationCamera;
     private PlayerController playerController;
-
+    public bool inCannon = false;
     private Camera playerCamera;
     // Start is called before the first frame update
     void Start()
@@ -100,7 +101,7 @@ public class UseCannons : MonoBehaviour
 
     public void useCannon()
     { 
-
+        inCannon = true;
         startPositionCamera = playerCamera.transform.position; // Запоминаем позицию камеры игрока
         startRotationCamera = playerCamera.transform.rotation; // Запоминаем поворот камеры игрока
 
@@ -128,8 +129,9 @@ public class UseCannons : MonoBehaviour
 
     public void stopUsingCannon()
     {
+        inCannon = false;
         playerCamera.GetComponent<CameraController>().enabled = true;
-        playerCamera.transform.position = startPositionCamera;
+        playerCamera.transform.position = posCamera.transform.position;
         playerCamera.transform.rotation = startRotationCamera;
 
         GameObject.FindWithTag(currentTag).transform.Find("cannon").transform.Find("stvol").GetComponent<Accemilator>().UnsetCannon(); // Выключаем аксимилятор

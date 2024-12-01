@@ -12,12 +12,15 @@ public class PlayerController : MonoBehaviour
     private Joystick joystick;
     public float horizontalInput;
     public float verticalInput;
+    private UseCannons useCannons;
+    public float y;
 
     //[SerializeField] private Animator animator;
 
     private void Start()
     {
-        
+        y = gameObject.transform.position.y;
+        useCannons = GetComponent<UseCannons>();
         view = GetComponent<PhotonView>();
         animator = transform.Find("Knight").GetComponent<Animator>();   
         controller = GetComponent<CharacterController>();
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (!view.IsMine) return;
         else
         {
@@ -38,7 +42,15 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-
+        if (gameObject.transform.position.y != y)
+        {
+            
+            y = gameObject.transform.position.y;  
+            if (useCannons.inCannon)
+            {
+                useCannons.stopUsingCannon();
+            }
+        }
         horizontalInput = joystick.Horizontal;
         verticalInput = joystick.Vertical;
 

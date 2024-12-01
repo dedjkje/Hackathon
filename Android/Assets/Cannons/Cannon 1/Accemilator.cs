@@ -31,7 +31,7 @@ public class Accemilator : MonoBehaviour
     [SerializeField] Transform ParavoeKolesoBig;
     [SerializeField] Transform LevoeKolesoLittle;
     [SerializeField] Transform LevoeKolesoBig;
-
+    
     void Awake()
     {
         if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
@@ -112,6 +112,10 @@ public class Accemilator : MonoBehaviour
         if (onThisCannon)
         {
             CannonRotate();
+        }
+        if(TryGetComponent<Rigidbody>(out Rigidbody r))
+        {
+            transform.parent.gameObject.tag = "Trash";
         }
     }
     void CannonRotate()

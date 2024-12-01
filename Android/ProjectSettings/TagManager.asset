@@ -18,6 +18,7 @@ TagManager:
   - PlayerCamera2
   - Trajectory
   - Shell
+  - Trash
   layers:
   - Default
   - TransparentFX
