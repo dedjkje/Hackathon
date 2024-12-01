@@ -67,6 +67,7 @@ MonoBehaviour:
   - DeleteObj
   - SetCannonToBuildZone
   - DelTransform
+  - Untag
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

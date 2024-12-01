@@ -236,6 +236,10 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         //    t.AddComponent<Rigidbody>();
         //}
     }
+    [PunRPC] void Untag(int ViewID)
+    {
+        PhotonView.Find(ViewID).gameObject.tag = null;
+    }
     [PunRPC]
     void Stage_5()
     {
@@ -301,6 +305,7 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         GameObject.Find("Player 1(Clone)").GetComponent<UseCannons>().stopUsingCannon();
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
+        photonView.RPC("Untag", RpcTarget.AllBuffered, cannon.GetComponentInParent<PhotonView>().ViewID);
     }
 }
 

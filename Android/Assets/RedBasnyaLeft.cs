@@ -286,5 +286,6 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
         GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().stopUsingCannon();
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
+        photonView.RPC("Untag", RpcTarget.AllBuffered, cannon.GetComponentInParent<PhotonView>().ViewID);
     }
 }

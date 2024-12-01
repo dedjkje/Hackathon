@@ -279,8 +279,8 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
         {
             photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
         }
-        photonView.RPC("Delete", RpcTarget.AllBuffered, 164);
-        photonView.RPC("Delete", RpcTarget.AllBuffered, 170);
+        //photonView.RPC("Delete", RpcTarget.AllBuffered, 164);
+        //photonView.RPC("Delete", RpcTarget.AllBuffered, 170);
         photonView.RPC("Delete", RpcTarget.AllBuffered, 590);
         //PhotonView.Find(20).GetComponent<MeshCollider>().convex = true;
         //PhotonView.Find(20).AddComponent<Rigidbody>();
@@ -292,16 +292,17 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
         //PhotonView.Find(23).AddComponent<Rigidbody>();
         //PhotonView.Find(24).GetComponent<MeshCollider>().convex = true;
         //PhotonView.Find(24).AddComponent<Rigidbody>();
-        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 20);
-        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 21);
-        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 22);
-        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 23);
-        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 24);
-        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 165);
+        //photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 20);
+        //photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 21);
+        //photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 22);
+        //photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 23);
+        //photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 24);
+        //photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 165);
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, 772);
         
         GameObject.Find("Player 1(Clone)").GetComponent<UseCannons>().stopUsingCannon();
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
+        photonView.RPC("Untag", RpcTarget.AllBuffered, cannon.GetComponentInParent<PhotonView>().ViewID);
     }
 }
