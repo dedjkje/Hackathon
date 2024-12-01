@@ -2151,6 +2151,7 @@ MonoBehaviour:
   a: {fileID: 45195535}
   b: {fileID: 45195538}
   c: {fileID: 45195537}
+  cannon: {fileID: 0}
 --- !u!65 &45195537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7138,6 +7139,7 @@ MonoBehaviour:
   a: {fileID: 0}
   b: {fileID: 0}
   c: {fileID: 0}
+  cannon: {fileID: 0}
 --- !u!64 &170228914
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14052,6 +14054,7 @@ MonoBehaviour:
   Stage6: []
   Stage7: []
   Stage8: []
+  cannon: {fileID: 0}
 --- !u!114 &362430348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23904,6 +23907,7 @@ MonoBehaviour:
   Stage6: []
   Stage7: []
   Stage8: []
+  cannon: {fileID: 0}
 --- !u!64 &650280035
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24927,6 +24931,7 @@ MonoBehaviour:
   hp: {fileID: 0}
   damage: {fileID: 0}
   maxhp: 0
+  cannon: {fileID: 0}
 --- !u!64 &692888319
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36165,6 +36170,7 @@ MonoBehaviour:
   hp: {fileID: 0}
   damage: {fileID: 0}
   maxhp: 0
+  cannon: {fileID: 0}
 --- !u!65 &1053489927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61448,6 +61454,7 @@ MonoBehaviour:
   hp: {fileID: 0}
   damage: {fileID: 0}
   maxhp: 0
+  cannon: {fileID: 0}
 --- !u!1 &1699932396
 GameObject:
   m_ObjectHideFlags: 0
@@ -114610,7 +114617,7 @@ Transform:
   m_GameObject: {fileID: 4008587525287324914}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0.078, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135064,7 +135071,7 @@ Transform:
   m_GameObject: {fileID: 2309546026033596464}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.109, y: 0, z: 0}
+  m_LocalPosition: {x: 0.106, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []

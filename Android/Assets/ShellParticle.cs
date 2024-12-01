@@ -9,6 +9,7 @@ public class ShellParticle : MonoBehaviourPunCallbacks
     public float interval = 0.03f; // Интервал в секундах
     private float timer = 0.0f;
     public int times = 5;
+    public float lifeTime;
     [PunRPC]
     public void Delete(int ViewID)
     {
@@ -16,10 +17,11 @@ public class ShellParticle : MonoBehaviourPunCallbacks
     }
     void Start()
     {
+        lifeTime = Time.time;
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag != "Cannon1" || collision.gameObject.tag != "Cannon2" || collision.gameObject.tag != "Cannon3" || collision.gameObject.tag != "Cannon4" || collision.gameObject.tag != "Cannon5" || collision.gameObject.tag != "Cannon6")
+        if(lifeTime>1)
         {
             Delete(GetComponent<PhotonView>().ViewID);
         }
@@ -28,6 +30,7 @@ public class ShellParticle : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        lifeTime += Time.deltaTime;
         timer += Time.deltaTime;
         if (timer >= interval && times > 0)
         {

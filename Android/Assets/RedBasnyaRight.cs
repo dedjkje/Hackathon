@@ -222,7 +222,7 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
     [PunRPC]
     void DelTransform(int ViewID)
     {
-        PhotonView.Find(ViewID).GetComponent<PhotonTransformViewClassic>();
+        PhotonView.Find(ViewID).GetComponent<PhotonTransformViewClassic>().enabled = false;
     }
     void Stage_8()
     {
@@ -269,6 +269,10 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
             }
             
         }
-        
+
+        photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
+        photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
+        GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().startShake = true;
+        GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().stopUsingCannon();
     }
 }

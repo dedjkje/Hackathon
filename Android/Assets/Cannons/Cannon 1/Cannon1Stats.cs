@@ -70,7 +70,7 @@ public class Cannon1Stats : MonoBehaviourPunCallbacks
         if (onCooldown)
         {
             gameObject.transform.Find("BuildingCannonTimer(Clone)").GetComponent<Canvas>().enabled = true;
-            gameObject.transform.Find("BuildingCannonTimer(Clone)").transform.Find("Timer").GetComponent<TMP_Text>().text = $"{Mathf.FloorToInt(cooldown - curTime + time + 1)}";
+            gameObject.transform.Find("BuildingCannonTimer(Clone)").transform.Find("Timer").GetComponent<TMP_Text>().text = $"{Mathf.Round(cooldown - curTime + time)}";
             if (startCoolDown)
             {
                 time = Time.time;
