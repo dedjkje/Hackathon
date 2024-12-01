@@ -238,6 +238,7 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
     }
     void Stage_8()
     {
+        
         photonView.RPC("Delete", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (1)").transform.Find("delete").GetComponent<PhotonView>().ViewID);
         photonView.RPC("Delete", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (1)").transform.Find("ЛевоЦентр(R)").transform.Find("del").GetComponent<PhotonView>().ViewID);
         //photonView.RPC("TargetBoxColliderRPC",RpcTarget.AllBuffered,a,b,c);

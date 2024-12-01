@@ -207,6 +207,7 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
     }
     void Stage_8()
     {
+        
         foreach (Transform child in transform.Find("Право(R)(Clone)"))
         {
             child.gameObject.GetComponent<MeshCollider>().convex = true;
@@ -242,8 +243,12 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
 
         foreach (Transform child in PhotonView.Find(165).gameObject.transform)
         {
-            child.GetComponent<MeshCollider>().convex = true;
-            child.AddComponent<Rigidbody>();
+            if (child.TryGetComponent<MeshCollider>(out MeshCollider m))
+            {
+                child.GetComponent<MeshCollider>().convex = true;
+                child.AddComponent<Rigidbody>();
+            }
+            
         }
         
     }

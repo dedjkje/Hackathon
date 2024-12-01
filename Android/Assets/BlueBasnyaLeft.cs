@@ -278,6 +278,7 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
        // }
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (2)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
+        
     }
 }
 

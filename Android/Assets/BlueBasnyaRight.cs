@@ -42,42 +42,43 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
     {
         if (health < 100 && stage1play)
         {
-            photonView.RPC("Stage_1", RpcTarget.All);
+            photonView.RPC("Stage_1", RpcTarget.AllBuffered);
             stage1play = false;
+            
         }
         if (health < 100 - 100f / 7 && stage2play)
         {
-            photonView.RPC("Stage_2", RpcTarget.All);
+            photonView.RPC("Stage_2", RpcTarget.AllBuffered);
             stage2play = false;
         }
         if (health < 100 - 100f / 7 * 2 && stage3play)
         {
-            photonView.RPC("Stage_3", RpcTarget.All);
+            photonView.RPC("Stage_3", RpcTarget.AllBuffered);
             stage3play = false;
         }
         if (health < 100 - 100f / 7 * 3 && stage4play)
         {
-            photonView.RPC("Stage_4", RpcTarget.All);
+            photonView.RPC("Stage_4", RpcTarget.AllBuffered);
             stage4play = false;
         }
         if (health < 100 - 100f / 7 * 4 && stage5play)
         {
-            photonView.RPC("Stage_5", RpcTarget.All);
+            photonView.RPC("Stage_5", RpcTarget.AllBuffered);
             stage5play = false;
         }
         if (health < 100 - 100f / 7 * 5 && stage6play)
         {
-            photonView.RPC("Stage_6", RpcTarget.All);
+            photonView.RPC("Stage_6", RpcTarget.AllBuffered);
             stage6play = false;
         }
         if (health < 100 - 100f / 7 * 6 && stage7play)
         {
-            photonView.RPC("Stage_7", RpcTarget.All);
+            photonView.RPC("Stage_7", RpcTarget.AllBuffered);
             stage7play = false;
         }
         if (health == 0 && stage8play)
         {
-            photonView.RPC("Stage_8", RpcTarget.All);
+            photonView.RPC("Stage_8", RpcTarget.AllBuffered);
             stage8play = false;
         }
     }
@@ -173,7 +174,7 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
             PhotonView.Find(ViewID).GetComponent<MeshCollider>().convex = true;
         }
         
-        if(PhotonView.Find(ViewID).TryGetComponent<PhotonRigidbodyView>(out PhotonRigidbodyView a))
+        if(!PhotonView.Find(ViewID).TryGetComponent<PhotonRigidbodyView>(out PhotonRigidbodyView a))
         {
             PhotonView.Find(ViewID).AddComponent<PhotonRigidbodyView>();
         }
@@ -292,6 +293,6 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 24);
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, 165);
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, 772);
-
+        GameObject.Find("Player 1(Clone)").GetComponent<UseCannons>().startShake = true;
     }
 }
