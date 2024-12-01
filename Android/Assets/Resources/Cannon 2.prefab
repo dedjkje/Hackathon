@@ -55,7 +55,7 @@ MonoBehaviour:
   canvasPrefab: {fileID: 1610487632783479694, guid: 9c8d5a87587ec4d4895be50eec36a375,
     type: 3}
   offset: {x: 0.8, y: 2, z: 0}
-  countdownTime: 59
+  countdownTime: 30
 --- !u!114 &8659284181704748359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 80
-  cooldown: 45
-  damage: 25
+  cooldown: 30
+  damage: 40
   force_lvl: 0
   cooldown_lvl: 0
   damage_lvl: 0
@@ -535,6 +535,7 @@ MonoBehaviour:
   Stvol: {fileID: 0}
   speedHor: 0.5
   speedVer: 0.5
+  Cof: 1
   KolesaSpeed: 3
   typeOfCannon: 2
   ParavoeKoleso: {fileID: 0}

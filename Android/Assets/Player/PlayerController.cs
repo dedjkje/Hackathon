@@ -29,7 +29,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if(gameObject.name == "Player 1(Clone)")
+        {
+            if(transform.position.y< 8)
+            {
+                GetComponent<ToRed>().toRed();
+            }
+        }
+        if (gameObject.name == "Player 2(Clone)")
+        {
+            if (transform.position.y < 8)
+            {
+                GetComponent<ToRed>().toBlue();
+            }
+        }
         if (!view.IsMine) return;
         else
         {
@@ -42,7 +55,7 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        if (gameObject.transform.position.y != y)
+        if (gameObject.transform.position.y - y >0.3f)
         {
             
             y = gameObject.transform.position.y;  

@@ -273,7 +273,7 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
         
         //GameObject.Find("Player 1(Clone)").GetComponent<UseCannons>().stopUsingCannon();
-        photonView.RPC("stop", RpcTarget.AllBuffered, GameObject.Find("Player 1(Clone)").GetComponent<PhotonView>().ViewID);
+        
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         // photonView.RPC("Untag", RpcTarget.AllBuffered, cannonM.GetComponent<PhotonView>().ViewID);

@@ -23,6 +23,7 @@ public class Accemilator : MonoBehaviour
     float horCannonRotation;
     float verStvolRotation;
     bool onThisCannon;
+    public float Cof = 1f;
     public float KolesaSpeed = 2f;
     public int typeOfCannon;
     [SerializeField] Transform ParavoeKoleso;
@@ -32,71 +33,143 @@ public class Accemilator : MonoBehaviour
     [SerializeField] Transform LevoeKolesoLittle;
     [SerializeField] Transform LevoeKolesoBig;
     
+    
     void Awake()
     {
-        if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
+
+        if (transform.parent.transform.parent.position.x > 10) {
+            if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+            {
+                maxRotateHorRight = 31;
+                maxRotateHorLeft = -31;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 2 && transform.parent.transform.parent.position.z < 10)
+            {
+                maxRotateHorRight = 40.0f;
+                maxRotateHorLeft = -5;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 40)
+            {
+                maxRotateHorRight = 5;
+                maxRotateHorLeft = -40;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+            {
+                maxRotateHorRight = 31;
+                maxRotateHorLeft = -31;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 1 && transform.parent.transform.parent.position.z < 10)
+            {
+                maxRotateHorRight = 40.0f;
+                maxRotateHorLeft = -5;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 40)
+            {
+                maxRotateHorRight = 5;
+                maxRotateHorLeft = -40;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+            {
+                maxRotateHorRight = 31;
+                maxRotateHorLeft = -31;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 3 && transform.parent.transform.parent.position.z < 10)
+            {
+                maxRotateHorRight = 40.0f;
+                maxRotateHorLeft = -5;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 40)
+            {
+                maxRotateHorRight = 5;
+                maxRotateHorLeft = -40;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
         }
-        if (typeOfCannon == 2 && transform.parent.transform.parent.position.z < 10)
+        else
         {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
+            if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+            {
+                maxRotateHorRight = 31;
+                maxRotateHorLeft = -31;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 2 && transform.parent.transform.parent.position.z < 10)
+            {
+                maxRotateHorRight = 5f;
+                maxRotateHorLeft = -40;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 40)
+            {
+                maxRotateHorRight = 40;
+                maxRotateHorLeft = -5;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+            {
+                maxRotateHorRight = 31;
+                maxRotateHorLeft = -31;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 1 && transform.parent.transform.parent.position.z < 10)
+            {
+                maxRotateHorRight = 5f;
+                maxRotateHorLeft = -40;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 40)
+            {
+                maxRotateHorRight = 40;
+                maxRotateHorLeft = -5;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
+            {
+                maxRotateHorRight = 31;
+                maxRotateHorLeft = -31;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 3 && transform.parent.transform.parent.position.z < 10)
+            {
+                maxRotateHorRight = 5f;
+                maxRotateHorLeft = -40;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
+            if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 40)
+            {
+                maxRotateHorRight = 40;
+                maxRotateHorLeft = -5;
+                maxRotateVerUp = -20;
+                maxRotateVerDown = 20;
+            }
         }
-        if (typeOfCannon == 2 && transform.parent.transform.parent.position.z > 40)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
-        if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
-        if (typeOfCannon == 1 && transform.parent.transform.parent.position.z < 10)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
-        if (typeOfCannon == 1 && transform.parent.transform.parent.position.z > 40)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
-        if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 10 && transform.parent.transform.parent.position.z < 40)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
-        if (typeOfCannon == 3 && transform.parent.transform.parent.position.z < 10)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
-        if (typeOfCannon == 3 && transform.parent.transform.parent.position.z > 40)
-        {
-            maxRotateHorRight = 31;
-            maxRotateHorLeft = -31;
-            maxRotateVerUp = -20;
-            maxRotateVerDown = 20;
-        }
+        
+        
         Stvol = GetComponent<Transform>();
         Cannon = transform.parent;
         stopRotateHorLeft = false;
