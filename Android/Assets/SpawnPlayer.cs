@@ -11,7 +11,7 @@ public class SpawnPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Quaternion[] rotations = { Quaternion.identity, new Quaternion(Quaternion.identity.x, -180, Quaternion.identity.z, Quaternion.identity.w) };
+        Quaternion[] rotations = { new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w), new Quaternion(Quaternion.identity.x, -270, Quaternion.identity.z, Quaternion.identity.w) };
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate(player[0].name, playerSpawn[0].position, rotations[0]);
