@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class destroyshell : MonoBehaviour
+public class destroyshell : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()
@@ -13,7 +14,7 @@ public class destroyshell : MonoBehaviour
     {
         if(collision.gameObject.tag== "Shell")
         {
-            Destroy(collision.gameObject);
+            PhotonNetwork.Destroy(collision.gameObject);
         }
     }
     // Update is called once per frame
