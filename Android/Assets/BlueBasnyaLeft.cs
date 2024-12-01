@@ -23,6 +23,13 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
     bool canDelete;
     public GameObject cannon;
     public GameObject cannonM;
+    [SerializeField] AudioClip audioClip;
+    [SerializeField] AudioSource audioSource;
+    [PunRPC]
+    public void addCoins(int ViewID, float value)
+    {
+        PhotonView.Find(ViewID).GetComponent<Coins>().coins += value;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -88,12 +95,13 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
         Debug.Log("Попал");
         if (collision.gameObject.tag == "Shell")
         {
+            audioSource.PlayOneShot(audioClip);
             Damage damageComponent = collision.gameObject.GetComponent<Damage>();
             float damageAmount = damageComponent.damage;
 
             if (damageAmount > health)
             {
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID, health);
                 health = 0;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
             }
@@ -101,7 +109,7 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
             {
                 health -= damageAmount;
                 hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += damageAmount;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID, damageAmount);
             }
 
             // Вызов метода для синхронизации состояния здоровья

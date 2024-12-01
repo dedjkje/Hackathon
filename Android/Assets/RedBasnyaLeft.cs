@@ -22,6 +22,13 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
     bool stage8play;
     public GameObject cannon;
     public GameObject cannonM;
+    [SerializeField] AudioClip audioClip;
+    [SerializeField] AudioSource audioSource;
+    [PunRPC]
+    public void addCoins(int ViewID, float value)
+    {
+        PhotonView.Find(ViewID).GetComponent<Coins>().coins += value;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -86,45 +93,58 @@ public class RedBasnyaLeft : MonoBehaviourPunCallbacks
         Debug.Log("Попал");
         if (collision.gameObject.tag == "Shell")
         {
-            if (collision.gameObject.GetComponent<Damage>().damage > health)
+            audioSource.PlayOneShot(audioClip);
+            Damage damageComponent = collision.gameObject.GetComponent<Damage>();
+            float damageAmount = damageComponent.damage;
+
+            if (damageAmount > health)
             {
-                GameObject.Find("Player 1(Clone)").GetComponent<Coins>().coins += health;
-                health -= health;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 1(Clone)").GetComponent<PhotonView>().ViewID, health);
+                health = 0;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
-                StartCoroutine(DecreaseHealthBar());
-                
             }
             else
             {
-                health -= collision.gameObject.GetComponent<Damage>().damage;
+                health -= damageAmount;
                 hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
-                StartCoroutine(DecreaseHealthBar());
-                GameObject.Find("Player 1(Clone)").GetComponent<Coins>().coins += collision.gameObject.GetComponent<Damage>().damage;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 1(Clone)").GetComponent<PhotonView>().ViewID, damageAmount);
             }
+
+            // Вызов метода для синхронизации состояния здоровья
+            photonView.RPC("UpdateHealthAndDecreaseBar", RpcTarget.All, health, maxhp);
         }
-        
+
+    }
+    [PunRPC]
+    private void UpdateHealthAndDecreaseBar(float currentHealth, float maximumHealth)
+    {
+        health = currentHealth; // Обновить текущее здоровье
+        hp.rectTransform.localScale = new Vector2(currentHealth / maximumHealth, hp.rectTransform.localScale.y);
+
+        // Запустить корутину для анимации изменения полосы здоровья
+        StartCoroutine(DecreaseHealthBar(currentHealth, maximumHealth));
     }
 
-    private IEnumerator DecreaseHealthBar()
+    private IEnumerator DecreaseHealthBar(float currentHealth, float maximumHealth)
     {
-        // Ждем 0.5 секунды
         yield return new WaitForSeconds(0.5f);
 
-        // Плавное уменьшение размера в течение 0.5 секунд
-        float targetScaleX = health / maxhp;
+        float targetScaleX = currentHealth / maximumHealth;
         float currentScaleX = hp.rectTransform.localScale.x;
         float duration = 0.5f;
         float elapsedTime = 0f;
 
+
         while (elapsedTime < duration)
         {
-            elapsedTime += 0.05f;
+            elapsedTime += Time.deltaTime; // Использует время в игре для корректного управления
             float newScaleX = Mathf.Lerp(currentScaleX, targetScaleX, elapsedTime / duration);
+            hp.rectTransform.localScale = new Vector2(newScaleX, hp.rectTransform.localScale.y);
             damage.rectTransform.localScale = new Vector2(newScaleX, hp.rectTransform.localScale.y);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.05f); // Ждём следующего кадра
         }
 
-        // Убедимся, что мы установили окончательное значение
+        hp.rectTransform.localScale = new Vector2(targetScaleX, hp.rectTransform.localScale.y);
         damage.rectTransform.localScale = new Vector2(targetScaleX, hp.rectTransform.localScale.y);
     }
     [PunRPC]

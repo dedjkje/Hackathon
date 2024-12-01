@@ -25,6 +25,8 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
     [SerializeField] BoxCollider c;
     public GameObject cannon;
     public GameObject cannonM;
+    [SerializeField] AudioClip audioClip;
+    [SerializeField] AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,7 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
         Debug.Log("Попал");
         if (collision.gameObject.tag == "Shell")
         {
+            audioSource.PlayOneShot(audioClip);
             Damage damageComponent = collision.gameObject.GetComponent<Damage>();
             float damageAmount = damageComponent.damage;
 
@@ -256,6 +259,8 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
     [PunRPC]
     void Stage_8()
     {
+        GameObject.Find("Player 1(Clone)").GetComponent<ToRed>().toRed();
+        GameObject.Find("Player 2(Clone)").GetComponent<ToRed>().toRed();
         //photonView.RPC("TargetBoxColliderRPC",RpcTarget.AllBuffered,a,b,c);
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
         photonView.RPC("AddConvex", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
@@ -272,7 +277,7 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         // photonView.RPC("Untag", RpcTarget.AllBuffered, cannonM.GetComponent<PhotonView>().ViewID);
-        PhotonNetwork.LoadLevel("Red");
+        
     }
     
 }

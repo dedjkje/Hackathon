@@ -1299,6 +1299,7 @@ GameObject:
   - component: {fileID: 7370034893506563980}
   - component: {fileID: 7150436133762641255}
   - component: {fileID: 4695182112134079979}
+  - component: {fileID: 8584213277644427572}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player1
@@ -1421,6 +1422,7 @@ MonoBehaviour:
   particleShootPrefab: {fileID: 0}
   updatePanel: {fileID: 4695182112134079979}
   posCamera: {fileID: 4748266703376160018}
+  AudioClip: {fileID: 8300000, guid: 6f48c873e26e9e94dbf902d6baf7d61c, type: 3}
   currentTag: 
   explosionPlace: {fileID: 0}
   startShake: 0
@@ -1609,6 +1611,18 @@ MonoBehaviour:
   distanceCoins: {fileID: 544809743771293348}
   UseUpdatePanel: {fileID: 9185482759911069117}
   flag: 0
+--- !u!114 &8584213277644427572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623832647493854937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0868cf88728e54a4b837a2566558feba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4842050820267017786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,7 +3858,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fd6c1ffd4b530c47a1cbe340e9e838e, type: 2}
+  - {fileID: 2100000, guid: 0a4e5687093dbd7428db6b9f6fcb4607, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3889,7 +3903,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 0.25943398, g: 1, b: 0.32814378, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3940,7 +3954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
-  pointNumber: 20
+  pointNumber: 15
 --- !u!1001 &3418862755829861962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5236,7 +5250,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1493362906470a5418f0a6af8d597b2c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1082271958561512970, guid: 1493362906470a5418f0a6af8d597b2c,
         type: 3}

@@ -1119,6 +1119,7 @@ GameObject:
   - component: {fileID: 7370034893506563980}
   - component: {fileID: 92836342509381273}
   - component: {fileID: 7409278751689855226}
+  - component: {fileID: -4103382423615427271}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player1
@@ -1241,6 +1242,7 @@ MonoBehaviour:
   particleShootPrefab: {fileID: 0}
   updatePanel: {fileID: 7409278751689855226}
   posCamera: {fileID: 1154024813419752444}
+  AudioClip: {fileID: 8300000, guid: 6f48c873e26e9e94dbf902d6baf7d61c, type: 3}
   currentTag: 
   explosionPlace: {fileID: 0}
   startShake: 0
@@ -1429,6 +1431,18 @@ MonoBehaviour:
   distanceCoins: {fileID: 3285899153593667363}
   UseUpdatePanel: {fileID: 9185482759911069117}
   flag: 0
+--- !u!114 &-4103382423615427271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623832647493854937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0868cf88728e54a4b837a2566558feba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4698364102424691930
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,7 +3858,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fd6c1ffd4b530c47a1cbe340e9e838e, type: 2}
+  - {fileID: 2100000, guid: c00b10bc62ee61b4e8a55462255bc920, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3889,7 +3903,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 0.25943398, g: 1, b: 0.32814378, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3940,7 +3954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
-  pointNumber: 20
+  pointNumber: 15
 --- !u!1001 &3418862755829861962
 PrefabInstance:
   m_ObjectHideFlags: 0

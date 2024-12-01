@@ -15,6 +15,8 @@ public class UseCannons : MonoBehaviour
     [SerializeField] GameObject particleShootPrefab;
     [SerializeField] UpdatePanel updatePanel;
     [SerializeField] Transform posCamera;
+    [SerializeField] AudioClip AudioClip;
+
     public string currentTag;
     public Transform explosionPlace;
     private int player1Layer; // Слой для игрока
@@ -101,6 +103,7 @@ public class UseCannons : MonoBehaviour
 
     public void useCannon()
     { 
+        
         inCannon = true;
         startPositionCamera = playerCamera.transform.position; // Запоминаем позицию камеры игрока
         startRotationCamera = playerCamera.transform.rotation; // Запоминаем поворот камеры игрока
@@ -150,6 +153,8 @@ public class UseCannons : MonoBehaviour
 
     public void Shoot()
     {
+        AudioSource audioSource = GameObject.FindWithTag(currentTag).GetComponent<AudioSource>();
+        audioSource.PlayOneShot(AudioClip);
         if (GameObject.FindWithTag(currentTag).name == "Cannon 1(Clone)")
         {
             

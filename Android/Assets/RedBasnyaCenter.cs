@@ -23,8 +23,15 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
     [SerializeField] BoxCollider a;
     [SerializeField] BoxCollider b;
     [SerializeField] BoxCollider c;
+    [SerializeField] AudioClip audioClip;
+    [SerializeField] AudioSource audioSource;
     public GameObject cannon;
     public GameObject cannonM;
+    [PunRPC]
+    public void addCoins(int ViewID, float value)
+    {
+        PhotonView.Find(ViewID).GetComponent<Coins>().coins += value;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -81,12 +88,13 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
         Debug.Log("Попал");
         if (collision.gameObject.tag == "Shell")
         {
+            audioSource.PlayOneShot(audioClip);
             Damage damageComponent = collision.gameObject.GetComponent<Damage>();
             float damageAmount = damageComponent.damage;
 
             if (damageAmount > health)
             {
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 1(Clone)").GetComponent<PhotonView>().ViewID, health);
                 health = 0;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
             }
@@ -94,7 +102,7 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
             {
                 health -= damageAmount;
                 hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += damageAmount;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 1(Clone)").GetComponent<PhotonView>().ViewID, damageAmount);
             }
 
             // Вызов метода для синхронизации состояния здоровья
@@ -234,6 +242,8 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
     }
     void Stage_8()
     {
+        GameObject.Find("Player 1(Clone)").GetComponent<ToRed>().toBlue();
+        GameObject.Find("Player 2(Clone)").GetComponent<ToRed>().toBlue();
         //photonView.RPC("TargetBoxColliderRPC",RpcTarget.AllBuffered,a,b,c);
         // photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
         photonView.RPC("AddConvex", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("other").GetComponent<PhotonView>().ViewID);
@@ -250,8 +260,7 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
         //GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().stopUsingCannon();
         photonView.RPC("stop", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID);
         //  photonView.RPC("Untag", RpcTarget.AllBuffered, cannonM.GetComponent<PhotonView>().ViewID);
-        PhotonNetwork.LoadLevel("Blue");
-
+        
     }
 
     
