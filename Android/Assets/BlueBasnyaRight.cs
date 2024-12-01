@@ -30,7 +30,7 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
     bool stage6play = true;
     bool stage7play = true;
     bool stage8play = true;
-
+    public GameObject cannon;
     // Start is called before the first frame update
     void Start()
     {
@@ -165,6 +165,12 @@ public class BlueBasnyaRight : MonoBehaviourPunCallbacks
                 
             }
         }
+    }
+    
+    [PunRPC]
+    void DelTransform(int ViewID)
+    {
+        PhotonView.Find(ViewID).GetComponent<PhotonTransformViewClassic>();
     }
     [PunRPC]
     void GiveRigidbodyToObject(int ViewID)

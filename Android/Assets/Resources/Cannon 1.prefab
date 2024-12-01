@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 8149114995612851064}
   - component: {fileID: -8936915294081481070}
   - component: {fileID: -6972617996982515266}
+  - component: {fileID: 6765671951606787976}
   m_Layer: 0
   m_Name: Cannon 1
   m_TagString: Untagged
@@ -319,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasPrefab: {fileID: 1610487632783479694, guid: 9c8d5a87587ec4d4895be50eec36a375,
     type: 3}
+  offset: {x: 0.8, y: 1.7, z: 0}
   countdownTime: 5
 --- !u!65 &2649877399326614568
 BoxCollider:
@@ -360,6 +362,13 @@ MonoBehaviour:
   cooldown_lvl: 0
   damage_lvl: 0
   onCooldown: 0
+  cannonC: {fileID: 4073673065811120459}
+  blueBasnyaLeft: {fileID: 0}
+  blueBasnyaCenter: {fileID: 0}
+  blueBasnyaRight: {fileID: 0}
+  redBasnyaCenter: {fileID: 0}
+  redBasnyaLeft: {fileID: 0}
+  redBasnyaRight: {fileID: 0}
 --- !u!95 &2942950094504870782
 Animator:
   serializedVersion: 5
@@ -451,6 +460,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transparentBlue: {fileID: 2100000, guid: 0a4e5687093dbd7428db6b9f6fcb4607, type: 2}
   transparentRed: {fileID: 2100000, guid: c00b10bc62ee61b4e8a55462255bc920, type: 2}
+--- !u!64 &6765671951606787976
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984907959038518236}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2913562471830358172
 GameObject:
   m_ObjectHideFlags: 0

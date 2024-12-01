@@ -20,7 +20,10 @@ public class ShellParticle : MonoBehaviourPunCallbacks
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag != "Cannon1" || collision.gameObject.tag != "Cannon2" || collision.gameObject.tag != "Cannon3" || collision.gameObject.tag != "Cannon4" || collision.gameObject.tag != "Cannon5" || collision.gameObject.tag != "Cannon6")
-        Delete(GetComponent<PhotonView>().ViewID);
+        {
+            Delete(GetComponent<PhotonView>().ViewID);
+        }
+        
     }
     // Update is called once per frame
     void Update()

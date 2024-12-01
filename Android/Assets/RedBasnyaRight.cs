@@ -30,7 +30,7 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
     bool stage6play = true;     
     bool stage7play = true;
     bool stage8play = true;
-    
+    public GameObject cannon;
     // Start is called before the first frame update
     void Start()
     {
@@ -204,6 +204,25 @@ public class RedBasnyaRight : MonoBehaviourPunCallbacks
             child.GetComponent<MeshCollider>().convex = true;
             child.AddComponent<Rigidbody>();
         }
+    }
+    [PunRPC]
+    void GiveRigidbodyToObject(int ViewID)
+    {
+        if (PhotonView.Find(ViewID).TryGetComponent<MeshCollider>(out MeshCollider m))
+        {
+            PhotonView.Find(ViewID).GetComponent<MeshCollider>().convex = true;
+        }
+
+        if (!PhotonView.Find(ViewID).TryGetComponent<PhotonRigidbodyView>(out PhotonRigidbodyView a))
+        {
+            PhotonView.Find(ViewID).AddComponent<PhotonRigidbodyView>();
+        }
+
+    }
+    [PunRPC]
+    void DelTransform(int ViewID)
+    {
+        PhotonView.Find(ViewID).GetComponent<PhotonTransformViewClassic>();
     }
     void Stage_8()
     {
