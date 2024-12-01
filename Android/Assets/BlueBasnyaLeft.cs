@@ -297,7 +297,7 @@ public class BlueBasnyaLeft : MonoBehaviourPunCallbacks
        // }
         photonView.RPC("GiveRigidbody", RpcTarget.AllBuffered, GameObject.Find("ZAMOOOOMK (2)").transform.Find("ЛевоЦентр(R)").transform.Find("GameObject (2)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
-        GameObject.Find("Player 1(Clone)").GetComponent<UseCannons>().startShake = true;
+        
         GameObject.Find("Player 1(Clone)").GetComponent<UseCannons>().stopUsingCannon();
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);

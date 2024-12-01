@@ -56,11 +56,11 @@ public class Cannon1Stats : MonoBehaviourPunCallbacks
         }
         if (transform.position.x < 10 && transform.position.z < 42 && transform.position.z > 14)
         {
-            redBasnyaCenter.cannon = gameObject;
+            redBasnyaCenter.cannon = cannonC;
         }
         if (transform.position.x < 10 && transform.position.z < 14)
         {
-            redBasnyaRight.cannon = gameObject;
+            redBasnyaRight.cannon = cannonC;
         }
     }
     // Update is called once per frame

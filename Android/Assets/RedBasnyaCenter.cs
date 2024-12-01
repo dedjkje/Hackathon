@@ -228,7 +228,7 @@ public class RedBasnyaCenter : MonoBehaviourPunCallbacks
         photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("del1").GetComponent<PhotonView>().ViewID);
         photonView.RPC("Delete", RpcTarget.AllBuffered, transform.Find("Центр(R)").Find("another").Find("Cube (1)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("RemoveBoxColliderRPC", RpcTarget.AllBuffered);
-        GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().startShake = true;
+        
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         GameObject.Find("Player 2(Clone)").GetComponent<UseCannons>().stopUsingCannon();

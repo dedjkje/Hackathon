@@ -19,14 +19,14 @@ public class ShellParticle : MonoBehaviourPunCallbacks
     {
         lifeTime = Time.time;
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(lifeTime>1)
-        {
-            Delete(GetComponent<PhotonView>().ViewID);
-        }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(lifeTime>1)
+    //    {
+    //        Delete(GetComponent<PhotonView>().ViewID);
+    //    }
         
-    }
+    //}
     // Update is called once per frame
     void Update()
     {

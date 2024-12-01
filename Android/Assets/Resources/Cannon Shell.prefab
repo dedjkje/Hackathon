@@ -152,6 +152,7 @@ MonoBehaviour:
   system: {fileID: 9222876402992315373, guid: 0a08f711dd2f87f4c90e5d45596ceb05, type: 3}
   interval: 0.03
   times: 5
+  lifeTime: 0
 --- !u!114 &-8663925485795043839
 MonoBehaviour:
   m_ObjectHideFlags: 0
