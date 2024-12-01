@@ -9,7 +9,10 @@ public class LookOnZone : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject crosshair;
-
+    private void Start()
+    {
+        
+    }
     void Update()
     {
         //ѕровер€ем смотрил ли игрок на зону строительства

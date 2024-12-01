@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class UpdatePanel : MonoBehaviour
 {
-    PhotonView photonView;
     [SerializeField] GameObject updatePanel;
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject joystick;
@@ -39,8 +38,7 @@ public class UpdatePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        photonView = GetComponent<PhotonView>();
-        if (!photonView.IsMine) return;
+        
         coins = GetComponent<Coins>();
         flag = false;
     }
@@ -48,7 +46,7 @@ public class UpdatePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!photonView.IsMine) return;
+        
         if (flag)
         {
             Debug.Log(useCannos.currentTag);
@@ -227,7 +225,7 @@ public class UpdatePanel : MonoBehaviour
     {
         cannon1Stats.cooldown_lvl++;
         coins.coins -= 25;
-        cannon1Stats.cooldown /= 1.26f;
+        cannon1Stats.cooldown /= 1.1f;
     }
     public void DistanceUpdate()
     {

@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
     private Joystick joystick;
-    
+    public float horizontalInput;
+    public float verticalInput;
+
     //[SerializeField] private Animator animator;
-    
+
     private void Start()
     {
         
@@ -37,8 +39,8 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        float horizontalInput = joystick.Horizontal;
-        float verticalInput = joystick.Vertical;
+        horizontalInput = joystick.Horizontal;
+        verticalInput = joystick.Vertical;
 
         if (verticalInput * verticalInput  + horizontalInput * horizontalInput > 0 && verticalInput * verticalInput + horizontalInput * horizontalInput != 1)
         {

@@ -24,11 +24,13 @@ public class UseCannons : MonoBehaviour
     int count = 0; // тряска
     public Vector3 startPositionCamera;
     public Quaternion startRotationCamera;
+    private PlayerController playerController;
 
     private Camera playerCamera;
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
         playerCamera = transform.Find("Camera").GetComponent<Camera>();
         player1Layer = LayerMask.NameToLayer("player1");
         player2Layer = LayerMask.NameToLayer("player2");
@@ -74,12 +76,14 @@ public class UseCannons : MonoBehaviour
                 objectHit.CompareTag("Cannon5") ||
                 objectHit.CompareTag("Cannon6"))
             {
-                if (!updatePanel.flag)
+                if (!updatePanel.flag && ((playerController.horizontalInput + playerController.verticalInput) == 0f))
                 {
                     useUpgradePanel.SetActive(true);
                     currentTag = objectHit.tag; // Запоминает тег пушки
                 }
-                
+                if ((playerController.horizontalInput + playerController.verticalInput) > 0f) useUpgradePanel.SetActive(false);
+
+
             }
             else
             {
