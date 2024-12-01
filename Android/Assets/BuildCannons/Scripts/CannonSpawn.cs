@@ -10,7 +10,7 @@ public class CannonSpawn : MonoBehaviour
     private Material material; //Материал пушки
 
     [SerializeField] private Canvas canvasPrefab; // Префаб Canvas с текстом
-    [SerializeField] private Vector3 offset = new Vector3(0, 2, 0); // Смещение таймера относительно объекта
+    private Vector3 offset = new Vector3(0.8f, 2, 0); // Смещение таймера относительно объекта
     [SerializeField] private float countdownTime = 60f; // Длительность таймера в секундах
 
     private Canvas canvasInstance;
@@ -24,11 +24,17 @@ public class CannonSpawn : MonoBehaviour
 
         canvasInstance = Instantiate(canvasPrefab, transform.position + offset, Quaternion.identity);
         canvasInstance.transform.Rotate(0, -90, 0);
+        if (transform.position.x < 0)
+        {
+            canvasInstance.transform.position -= new Vector3(offset.x * 2,0,0);
+            canvasInstance.transform.Rotate(0, 180, 0);
+        }
         canvasInstance.transform.SetParent(transform); // Привязываем Canvas к объекту
         canvasInstance.worldCamera = Camera.main; // Устанавливаем камеру для UI
 
         // Получаем компонент Text
         timerText = canvasInstance.GetComponentInChildren<TMP_Text>();
+        
 
         // Устанавливаем начальное время
         remainingTime = countdownTime;
@@ -74,7 +80,7 @@ public class CannonSpawn : MonoBehaviour
             // Преобразуем оставшееся время в минуты и секунды
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.FloorToInt(remainingTime % 60);
-            timerText.text = $"{minutes:00}:{seconds:00}";
+            timerText.text = $"{seconds}";
         }
     }
 
