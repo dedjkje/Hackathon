@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/WinnerScenes/Blue.unity
+    guid: cd4825c970bd31149aab6525496d531b
+  - enabled: 1
+    path: Assets/WinnerScenes/Red.unity
+    guid: 77b05872e91be9d469d52f524cabb068
   m_configObjects: {}

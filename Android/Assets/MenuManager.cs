@@ -49,6 +49,5 @@ public class MenuManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

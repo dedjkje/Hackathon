@@ -22,7 +22,10 @@ public class BlueBashyqa : MonoBehaviourPunCallbacks
     {
 
     }
-
+    [PunRPC] public void addCoins(int ViewID, float value)
+    {
+        PhotonView.Find(ViewID).GetComponent<Coins>().coins += value;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Попал");
@@ -30,7 +33,8 @@ public class BlueBashyqa : MonoBehaviourPunCallbacks
         {
             if (collision.gameObject.GetComponent<Damage>().damage > health)
             {
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
+                //GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID, health);
                 health -= health;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
                 //StartCoroutine(DecreaseHealthBar());
@@ -42,7 +46,8 @@ public class BlueBashyqa : MonoBehaviourPunCallbacks
                 hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
                 //StartCoroutine(DecreaseHealthBar());
                 photonView.RPC("DecreaseHealthBar", RpcTarget.All);
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += collision.gameObject.GetComponent<Damage>().damage;
+                //GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += collision.gameObject.GetComponent<Damage>().damage;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID, damage);
             }
             
         }

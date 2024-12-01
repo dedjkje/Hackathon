@@ -30,6 +30,11 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
     {
         maxhp = health;
     }
+    [PunRPC]
+    public void addCoins(int ViewID, float value)
+    {
+        PhotonView.Find(ViewID).GetComponent<Coins>().coins += value;
+    }
 
     // Update is called once per frame
     void Update()
@@ -86,7 +91,8 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
 
             if (damageAmount > health)
             {
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
+                //GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += health;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID, health);
                 health = 0;
                 hp.rectTransform.localScale = new Vector2(0, hp.rectTransform.localScale.y);
             }
@@ -94,7 +100,8 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
             {
                 health -= damageAmount;
                 hp.rectTransform.localScale = new Vector2(health / maxhp, hp.rectTransform.localScale.y);
-                GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += damageAmount;
+                //GameObject.Find("Player 2(Clone)").GetComponent<Coins>().coins += damageAmount;
+                photonView.RPC("addCoins", RpcTarget.AllBuffered, GameObject.Find("Player 2(Clone)").GetComponent<PhotonView>().ViewID, damageAmount);
             }
 
             // Вызов метода для синхронизации состояния здоровья
@@ -264,6 +271,8 @@ public class BlueBasnyaCenter : MonoBehaviourPunCallbacks
         photonView.RPC("stop", RpcTarget.AllBuffered, GameObject.Find("Player 1(Clone)").GetComponent<PhotonView>().ViewID);
         photonView.RPC("GiveRigidbodyToObject", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
         photonView.RPC("DelTransform", RpcTarget.AllBuffered, cannon.GetComponent<PhotonView>().ViewID);
-       // photonView.RPC("Untag", RpcTarget.AllBuffered, cannonM.GetComponent<PhotonView>().ViewID);
+        // photonView.RPC("Untag", RpcTarget.AllBuffered, cannonM.GetComponent<PhotonView>().ViewID);
+        PhotonNetwork.LoadLevel("Red");
     }
+    
 }
